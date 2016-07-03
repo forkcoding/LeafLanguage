@@ -1,0 +1,29 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EC7F3DC1F0DBEBE8F9147C626D56831EE9AF3732" : 0,
+    "4182765C525509B305166AB949D5935FD5C85212" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9C2A4171-65A2-4BD5-8FB2-B00CB882080B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EC7F3DC1F0DBEBE8F9147C626D56831EE9AF3732" : "LeafLanguage\/RNFrostedSidebar\/",
+    "4182765C525509B305166AB949D5935FD5C85212" : "LeafLanguage\/MBProgressHUD\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LeafLanguage",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LeafLanguage.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jdg\/MBProgressHUD.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4182765C525509B305166AB949D5935FD5C85212"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rnystrom\/RNFrostedSidebar.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EC7F3DC1F0DBEBE8F9147C626D56831EE9AF3732"
+    }
+  ]
+}
