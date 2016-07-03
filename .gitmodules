@@ -3,7 +3,7 @@
 	url = https://github.com/leafvmaple/leafvmaple.github.io
 [submodule "LeafLanguage/MBProgressHUD"]
 	path = LeafLanguage/MBProgressHUD
-	url = https://github.com/jdg/MBProgressHUD.git
+	url = https://github.com/jdg/MBProgressHUD
 [submodule "LeafLanguage/RNFrostedSidebar"]
 	path = LeafLanguage/RNFrostedSidebar
-	url = https://github.com/rnystrom/RNFrostedSidebar.git
+	url = https://github.com/rnystrom/RNFrostedSidebar
