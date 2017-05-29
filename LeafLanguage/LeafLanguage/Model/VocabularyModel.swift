@@ -16,13 +16,13 @@ class VocabularyModel {
     static let LANGUAGE_STRING = ["Japanese", "English"]
     static fileprivate let SCRIPT_FILE_NAME = ["Japanese.json", "English.json"]
     
-    static fileprivate var _LanguageArr = Array<Array<Vocabulary>?>(repeating: nil, count: SCRIPT_FILE_NAME.count)
-    static fileprivate var _IDArr = Array<Array<Int>?>(repeating: nil, count: SCRIPT_FILE_NAME.count)
+    static fileprivate var _VocArrs = Array<Array<Vocabulary>?>(repeating: nil, count: SCRIPT_FILE_NAME.count)
+    static fileprivate var _CountsArr = Array<Array<Int>?>(repeating: nil, count: SCRIPT_FILE_NAME.count)
     
-    static func GetArrayData(_ language: LANGUAGE) -> Array<Vocabulary> {
+    static func UpdateVocArr(_ language: LANGUAGE) {
         
-        var resultArr = Array<Vocabulary>()
-        var lsIDArr = Array<Int>()
+        var vocArr = Array<Vocabulary>()
+        var countArr = Array<Int>()
         
         let scriptData = ReadScript(language)
         
@@ -38,7 +38,7 @@ class VocabularyModel {
                 
                 let lsArray = lsObj as! NSArray
                 
-                lsIDArr.append(resultArr.count)
+                countArr.append(vocArr.count)
                 
                 for vocObj in lsArray {
                     
@@ -46,7 +46,7 @@ class VocabularyModel {
                     let extStr = (vocObj as AnyObject).object(forKey: "Ext") as! String
                     let typeStr = (vocObj as AnyObject).object(forKey: "Type") as! String
                     let meaningStr = (vocObj as AnyObject).object(forKey: "Meaning") as! String
-                    let uniqueID = resultArr.count
+                    let uniqueID = vocArr.count
                     
                     var startTime = 0.0
                     
@@ -56,10 +56,10 @@ class VocabularyModel {
                     }
                     
                     if (uniqueID > 0) {
-                        resultArr[uniqueID - 1].SoundEnd = startTime
+                        vocArr[uniqueID - 1].SoundEnd = startTime
                     }
                     
-                    resultArr.append(Vocabulary(
+                    vocArr.append(Vocabulary(
                         Word:       vocStr,        CNWord:     extStr,
                         WordType:   typeStr,        Meaning:    meaningStr,
                         SoundName:  soundFileName,  SoundStart: startTime,
@@ -68,32 +68,32 @@ class VocabularyModel {
                 }
             }
             
-            _IDArr[language.rawValue] = lsIDArr
-            return resultArr
+            _CountsArr[language.rawValue] = countArr
+            _VocArrs[language.rawValue] = vocArr
         } catch {
-            _IDArr[language.rawValue] = lsIDArr
-            return Array<Vocabulary>()
+            _CountsArr[language.rawValue] = countArr
+            _VocArrs[language.rawValue] = Array<Vocabulary>()
         }
     }
     
     static func GetVocabulary(_ language: LANGUAGE, uniqueID: Int) -> Vocabulary? {
         
-        if (_LanguageArr[language.rawValue] == nil) {
-            _LanguageArr[language.rawValue] = GetArrayData(language)
+        if (_VocArrs[language.rawValue] == nil) {
+            UpdateVocArr(language)
         }
         
-        if (uniqueID < _LanguageArr[language.rawValue]!.count) {
-            return _LanguageArr[language.rawValue]![uniqueID]
+        if (uniqueID < _VocArrs[language.rawValue]!.count) {
+            return _VocArrs[language.rawValue]![uniqueID]
         }
         return nil
     }
     
     static func GetCountID(_ language: LANGUAGE, lesson: Int) -> Int {
         
-        if (_IDArr[language.rawValue] == nil) {
-            GetArrayData(language)
+        if (_CountsArr[language.rawValue] == nil) {
+            UpdateVocArr(language)
         }
-        return _IDArr[language.rawValue]![lesson]
+        return _CountsArr[language.rawValue]![lesson]
     }
     
     static func SaveScript(_ language: LANGUAGE, scriptData: Data) {
@@ -129,30 +129,30 @@ class VocabularyModel {
     
     static func GetVocabularyCount(_ language: LANGUAGE) -> Int {
         
-        if (_LanguageArr[language.rawValue] == nil) {
-            _LanguageArr[language.rawValue] = GetArrayData(language)
+        if (_VocArrs[language.rawValue] == nil) {
+            UpdateVocArr(language)
         }
-        return _LanguageArr[language.rawValue]!.count
+        return _VocArrs[language.rawValue]!.count
     }
     
     static func GetVocabularyCount(_ language: LANGUAGE, lesson: Int) -> Int {
         
-        if (_IDArr[language.rawValue] == nil) {
-            GetArrayData(language)
+        if (_CountsArr[language.rawValue] == nil) {
+            UpdateVocArr(language)
         }
         
         if (lesson == 0) {
-            return _IDArr[language.rawValue]![lesson]
+            return _CountsArr[language.rawValue]![lesson]
         }
-        return _IDArr[language.rawValue]![lesson] - _IDArr[language.rawValue]![lesson - 1]
+        return _CountsArr[language.rawValue]![lesson] - _CountsArr[language.rawValue]![lesson - 1]
     }
     
     static func GetLessonCount(_ language: LANGUAGE) -> Int {
         
-        if (_IDArr[language.rawValue] == nil) {
-            GetArrayData(language)
+        if (_CountsArr[language.rawValue] == nil) {
+            UpdateVocArr(language)
         }
-        return _IDArr[language.rawValue]!.count
+        return _CountsArr[language.rawValue]!.count
     }
     
     static func GetLessonCount(_ language: LANGUAGE, GroupID: Int) -> Int {
