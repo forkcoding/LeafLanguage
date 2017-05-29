@@ -20,8 +20,8 @@ struct Vocabulary {
 }
 
 enum LANGUAGE: Int {
-    case JAPANESE = 0
-    case ENGLISH
+    case japanese = 0
+    case english
 }
 
 class LeafConfig {
@@ -34,7 +34,7 @@ class LeafConfig {
     static var LocalCache = true
     static var RandomVoc = true
     
-    static func ConvertToNumber(number: Int) -> String {
+    static func ConvertToNumber(_ number: Int) -> String {
         
         var resultString = String()
         var numberValue = number
@@ -73,11 +73,11 @@ class LeafConfig {
         return resultString
     }
     
-    static func ConvertToPath(fileName: String, fileType: String, directory: String) -> String {
+    static func ConvertToPath(_ fileName: String, fileType: String, directory: String) -> String {
         return directory + "/" + fileName + "." + fileType
     }
     
-    static func GetURLPath(fileName: String) -> String {
+    static func GetURLPath(_ fileName: String) -> String {
         return INTERNET_PATH + "/" + fileName
     }
 }

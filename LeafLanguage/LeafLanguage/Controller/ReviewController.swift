@@ -12,18 +12,21 @@ class ReviewController : UIViewController {
     
     @IBOutlet weak var GlossaryCountLabel: UILabel!
     
-    private var _GlossaryArray: NSMutableDictionary?
+    fileprivate var _GlossaryArray: NSMutableDictionary?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.navigationController!.navigationBar.barStyle = UIBarStyle.blackOpaque
+        self.navigationController!.navigationBar.tintColor = UIColor.white
         
         InitData()
         InitView()
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         
@@ -60,7 +63,7 @@ class ReviewController : UIViewController {
         GlossaryCountLabel.text = "\(_GlossaryArray!.count)"
     }
     
-    @IBAction func GlossaryButtonClick(sender: AnyObject) {
+    @IBAction func GlossaryButtonClick(_ sender: AnyObject) {
         
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -250,7 +250,7 @@
                             <constraint firstItem="AHu-LK-nPB" firstAttribute="leading" secondItem="S5y-OI-dma" secondAttribute="centerX" constant="20" id="zpZ-7S-LNW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Hl3-wh-2ED"/>
+                    <navigationItem key="navigationItem" title="回忆模式" id="Hl3-wh-2ED"/>
                     <connections>
                         <outlet property="GlossaryCountLabel" destination="ILP-RT-BKH" id="ise-kG-reT"/>
                     </connections>
@@ -396,7 +396,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="soundClick" destination="6gH-3g-DzQ" eventType="touchUpInside" id="nKC-vs-4fo"/>
+                                    <action selector="SoundClick" destination="6gH-3g-DzQ" eventType="touchUpInside" id="vjf-uN-4nn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rr4-BP-fE3" userLabel="NextButton">
@@ -413,7 +413,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcT-gB-8Cl" userLabel="ExtVocButton">
-                                <rect key="frame" x="113" y="74" width="95" height="36"/>
+                                <rect key="frame" x="113" y="79" width="95" height="36"/>
                                 <state key="normal" backgroundImage="ExtOff">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -432,18 +432,18 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="addBtnClick" destination="6gH-3g-DzQ" eventType="touchUpInside" id="SUR-VB-aNM"/>
+                                    <action selector="AddBtnClick" destination="6gH-3g-DzQ" eventType="touchUpInside" id="Pv3-sR-7or"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rta-h4-2WC" userLabel="JNPVocButton">
-                                <rect key="frame" x="209" y="74" width="95" height="36"/>
+                                <rect key="frame" x="209" y="79" width="95" height="36"/>
                                 <state key="normal" backgroundImage="JPNOn"/>
                                 <connections>
                                     <action selector="ShowVocClick" destination="6gH-3g-DzQ" eventType="touchUpInside" id="Bme-qY-lxW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHA-h2-Ny8" userLabel="MeansButton">
-                                <rect key="frame" x="16" y="74" width="95" height="36"/>
+                                <rect key="frame" x="16" y="79" width="95" height="36"/>
                                 <state key="normal" backgroundImage="CNOff"/>
                                 <connections>
                                     <action selector="ShowMeaningClick" destination="6gH-3g-DzQ" eventType="touchUpInside" id="FmR-eY-33Y"/>
@@ -464,7 +464,7 @@
                             <constraint firstItem="Cn2-AD-VYk" firstAttribute="leading" secondItem="1lK-QT-7GB" secondAttribute="leadingMargin" id="Ccq-vY-bj0"/>
                             <constraint firstItem="Cn2-AD-VYk" firstAttribute="trailing" secondItem="1lK-QT-7GB" secondAttribute="trailingMargin" id="Ef4-AC-eT2"/>
                             <constraint firstItem="26O-Jq-uoe" firstAttribute="trailing" secondItem="1lK-QT-7GB" secondAttribute="trailingMargin" id="KVP-Pl-v4W"/>
-                            <constraint firstItem="qcT-gB-8Cl" firstAttribute="top" secondItem="Tnq-1w-euu" secondAttribute="bottom" constant="10" id="PWH-zH-exS"/>
+                            <constraint firstItem="qcT-gB-8Cl" firstAttribute="top" secondItem="Tnq-1w-euu" secondAttribute="bottom" constant="15" id="PWH-zH-exS"/>
                             <constraint firstItem="jlv-IE-R09" firstAttribute="centerX" secondItem="26O-Jq-uoe" secondAttribute="centerX" id="V6O-Yx-0vZ"/>
                             <constraint firstItem="rta-h4-2WC" firstAttribute="trailing" secondItem="1lK-QT-7GB" secondAttribute="trailingMargin" id="Wiw-8I-er6"/>
                             <constraint firstItem="Cn2-AD-VYk" firstAttribute="centerY" secondItem="1lK-QT-7GB" secondAttribute="centerY" id="XLg-u3-Hmp"/>
@@ -599,7 +599,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="soundClick" destination="Itx-C8-j0w" eventType="touchUpInside" id="7ef-Aj-VEd"/>
+                                    <action selector="SoundClick" destination="Itx-C8-j0w" eventType="touchUpInside" id="EMe-ii-gN3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1v-V8-3eT" userLabel="NextButton">
@@ -616,7 +616,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viQ-O4-SfY" userLabel="ExtVocButton">
-                                <rect key="frame" x="113" y="74" width="95" height="36"/>
+                                <rect key="frame" x="113" y="79" width="95" height="36"/>
                                 <state key="normal" backgroundImage="ExtOff">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -635,18 +635,18 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="addBtnClick" destination="Itx-C8-j0w" eventType="touchUpInside" id="Z0j-2P-cmm"/>
+                                    <action selector="AddBtnClick" destination="Itx-C8-j0w" eventType="touchUpInside" id="xZt-yb-F9s"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ds-35-AuI" userLabel="JNPVocButton">
-                                <rect key="frame" x="209" y="74" width="95" height="36"/>
+                                <rect key="frame" x="209" y="79" width="95" height="36"/>
                                 <state key="normal" backgroundImage="JPNOn"/>
                                 <connections>
                                     <action selector="ShowVocClick" destination="Itx-C8-j0w" eventType="touchUpInside" id="ZD1-4g-ecc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfH-jN-ajs" userLabel="MeansButton">
-                                <rect key="frame" x="16" y="74" width="95" height="36"/>
+                                <rect key="frame" x="16" y="79" width="95" height="36"/>
                                 <state key="normal" backgroundImage="CNOff"/>
                                 <connections>
                                     <action selector="ShowMeaningClick" destination="Itx-C8-j0w" eventType="touchUpInside" id="BZj-lG-nOH"/>
@@ -664,6 +664,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7t-qP-lBi" userLabel="ActionMenuButton">
+                                <rect key="frame" x="281" y="433" width="23" height="20"/>
+                                <state key="normal" backgroundImage="ActionMenuIco"/>
+                                <connections>
+                                    <action selector="ShowMenuClick:" destination="Itx-C8-j0w" eventType="touchUpInside" id="jX7-Cp-cJ2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -686,13 +693,15 @@
                             <constraint firstItem="f1v-V8-3eT" firstAttribute="top" secondItem="wyN-up-QbO" secondAttribute="bottom" constant="10" id="Vk1-I9-J4x"/>
                             <constraint firstItem="mfH-jN-ajs" firstAttribute="centerY" secondItem="viQ-O4-SfY" secondAttribute="centerY" id="YI2-wI-0Gb"/>
                             <constraint firstItem="4ds-35-AuI" firstAttribute="centerY" secondItem="viQ-O4-SfY" secondAttribute="centerY" id="ZVw-YE-kAi"/>
+                            <constraint firstItem="y7t-qP-lBi" firstAttribute="bottom" secondItem="62W-Qt-aaj" secondAttribute="top" constant="-10" id="b7j-wr-FI1"/>
                             <constraint firstItem="wyN-up-QbO" firstAttribute="centerY" secondItem="om2-U4-VP8" secondAttribute="centerY" id="dyB-e3-5kK"/>
                             <constraint firstItem="Klv-Pe-KYm" firstAttribute="leading" secondItem="om2-U4-VP8" secondAttribute="leadingMargin" id="eI5-Zo-ff1"/>
                             <constraint firstItem="mfH-jN-ajs" firstAttribute="leading" secondItem="om2-U4-VP8" secondAttribute="leadingMargin" id="esL-Am-fiB"/>
                             <constraint firstItem="ggN-0Y-z7O" firstAttribute="bottom" secondItem="r6d-vY-MF7" secondAttribute="top" constant="-20" id="haV-Au-sFb"/>
+                            <constraint firstItem="y7t-qP-lBi" firstAttribute="trailing" secondItem="om2-U4-VP8" secondAttribute="trailingMargin" id="rkj-AD-Foq"/>
                             <constraint firstItem="8Ce-Ej-Nv6" firstAttribute="bottom" secondItem="62W-Qt-aaj" secondAttribute="top" constant="-5" id="t8e-54-XiM"/>
-                            <constraint firstItem="62W-Qt-aaj" firstAttribute="top" secondItem="XhJ-B4-Oae" secondAttribute="bottom" constant="5" id="tYj-o9-yPQ"/>
-                            <constraint firstItem="viQ-O4-SfY" firstAttribute="top" secondItem="g3A-Xh-XO6" secondAttribute="bottom" constant="10" id="z8V-oi-mee"/>
+                            <constraint firstItem="XhJ-B4-Oae" firstAttribute="bottom" secondItem="62W-Qt-aaj" secondAttribute="top" constant="-5" id="tYj-o9-yPQ"/>
+                            <constraint firstItem="viQ-O4-SfY" firstAttribute="top" secondItem="g3A-Xh-XO6" secondAttribute="bottom" constant="15" id="z8V-oi-mee"/>
                             <constraint firstItem="XhJ-B4-Oae" firstAttribute="leading" secondItem="8Ce-Ej-Nv6" secondAttribute="trailing" constant="8" id="zjX-gs-4QW"/>
                         </constraints>
                     </view>
@@ -715,6 +724,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ActionMenuIco" width="23" height="20"/>
         <image name="ButtonNormal" width="138" height="40"/>
         <image name="CNOff" width="95" height="36"/>
         <image name="ExtOff" width="95" height="36"/>

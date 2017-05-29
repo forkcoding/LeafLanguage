@@ -13,9 +13,9 @@ class ViewModel {
         
         var activityViewController:UIViewController? = nil
         
-        var window = UIApplication.sharedApplication().keyWindow!
+        var window = UIApplication.shared.keyWindow!
         if (window.windowLevel != UIWindowLevelNormal) {
-            let windows = UIApplication.sharedApplication().windows
+            let windows = UIApplication.shared.windows
             for item in windows {
                 window = item 
             }
@@ -25,7 +25,7 @@ class ViewModel {
         if(viewsArray.count > 0) {
             
             let frontView = viewsArray[0]
-            let nextResponder = frontView.nextResponder()
+            let nextResponder = frontView.next
             
             if (nextResponder! is UIViewController) {
                 activityViewController = nextResponder as? UIViewController

@@ -10,12 +10,12 @@ import Foundation
 
 class ConnectionManager : NSObject, NSURLConnectionDataDelegate {
     
-    private var _Buffer = NSMutableData()
-    private var _ProgressHUD: MBProgressHUD?
-    private var _ContentLength: Int64 = 0
-    private var _ReceiveLenght: Int64 = 0
+    fileprivate var _Buffer = NSMutableData()
+    fileprivate var _ProgressHUD: MBProgressHUD?
+    fileprivate var _ContentLength: Int64 = 0
+    fileprivate var _ReceiveLenght: Int64 = 0
     
-    func GetHttpData(httpURL: String) -> NSData? {
+    func GetHttpData(_ httpURL: String) -> Data? {
         
         HttpConnection(httpURL)
         CFRunLoopRun()
@@ -23,24 +23,24 @@ class ConnectionManager : NSObject, NSURLConnectionDataDelegate {
         return GetReceiveData()
     }
     
-    func HttpConnection(httpURL: String) {
+    func HttpConnection(_ httpURL: String) {
         
         let viewController = ViewModel.GetActiveController()
-        _ProgressHUD = MBProgressHUD.showHUDAddedTo(viewController!.view, animated: true)
+        _ProgressHUD = MBProgressHUD.showAdded(to: viewController!.view, animated: true)
         
         if (_ProgressHUD != nil) {
-            _ProgressHUD!.mode = MBProgressHUDMode.DeterminateHorizontalBar
+            _ProgressHUD!.mode = MBProgressHUDMode.determinateHorizontalBar
             _ProgressHUD!.label.text = "下载中..."
             _ProgressHUD!.dimBackground = true
             //_ProgressHUD!.color = UIColor.purpleColor()
         }
         
-        let url = NSURL(string: httpURL)
-        let requrst = NSMutableURLRequest(URL: url!)
+        let url = URL(string: httpURL)
+        let requrst = NSMutableURLRequest(url: url!)
 
         requrst.setValue("", forHTTPHeaderField: "Accept-Encoding")
         
-        NSURLConnection(request: requrst, delegate: self, startImmediately: true)
+        NSURLConnection(request: requrst as URLRequest, delegate: self, startImmediately: true)
         
     }
     
@@ -48,7 +48,7 @@ class ConnectionManager : NSObject, NSURLConnectionDataDelegate {
         return "\(_ReceiveLenght / 1024)KB / \(_ContentLength / 1024)KB"
     }
     
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+    func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
         
         _ContentLength = response.expectedContentLength
         
@@ -56,13 +56,13 @@ class ConnectionManager : NSObject, NSURLConnectionDataDelegate {
         
     }
     
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         
         NSLog(error.localizedDescription)
         
     }
     
-    func connection(connection: NSURLConnection, didReceiveData data: NSData){
+    func connection(_ connection: NSURLConnection, didReceive data: Data){
         
         let fPercent = Float(_ReceiveLenght) / Float(_ContentLength)
         
@@ -71,13 +71,13 @@ class ConnectionManager : NSObject, NSURLConnectionDataDelegate {
             _ProgressHUD?.progress = fPercent
         }
         
-        _Buffer.appendData(data)
-        _ReceiveLenght += data.length
+        _Buffer.append(data)
+        _ReceiveLenght += data.count
         
         NSLog("Data recvive is %lli.", _ReceiveLenght)
     }
     
-    func connectionDidFinishLoading(connection: NSURLConnection)
+    func connectionDidFinishLoading(_ connection: NSURLConnection)
     {
         NSLog("connectionDidFinishLoading")
         
@@ -86,7 +86,7 @@ class ConnectionManager : NSObject, NSURLConnectionDataDelegate {
         CFRunLoopStop(CFRunLoopGetCurrent())
     }
     
-    func GetReceiveData() -> NSData?{
-        return _Buffer
+    func GetReceiveData() -> Data?{
+        return _Buffer as Data
     }
 }

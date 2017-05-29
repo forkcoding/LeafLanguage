@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		496AAAD61B18E1CA00E39EFE /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AAAD51B18E1CA00E39EFE /* GroupController.swift */; };
 		498462701B1B81AF00C0A281 /* LeafConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4984626F1B1B81AF00C0A281 /* LeafConfig.swift */; };
-		49C5F6651B14AD5200F6E18E /* VocabularyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5F6641B14AD5200F6E18E /* VocabularyController.swift */; };
 		49CDFC161D11373500D42443 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC151D11373500D42443 /* MBProgressHUD.m */; };
 		49CDFC4D1D16E24800D42443 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC4C1D16E24800D42443 /* SoundManager.swift */; };
 		49CDFC501D16E26C00D42443 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC4E1D16E26C00D42443 /* ConnectionManager.swift */; };
@@ -18,16 +16,19 @@
 		49CDFC561D16E27E00D42443 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC531D16E27E00D42443 /* ViewModel.swift */; };
 		49CDFC571D16E27E00D42443 /* VocabularyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC541D16E27E00D42443 /* VocabularyModel.swift */; };
 		49CDFC5B1D16E31200D42443 /* RNFrostedSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC5A1D16E31200D42443 /* RNFrostedSidebar.m */; };
-		49CDFC6A1D1FE37300D42443 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC691D1FE37300D42443 /* ReviewController.swift */; };
-		49CDFC6C1D1FEB9300D42443 /* GlossaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC6B1D1FEB9300D42443 /* GlossaryController.swift */; };
 		49CDFC6E1D213B3300D42443 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDFC6D1D213B3300D42443 /* ToastManager.swift */; };
 		49FC65F11B11D40E00C4D065 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC65F01B11D40E00C4D065 /* AppDelegate.swift */; };
-		49FC65F31B11D40E00C4D065 /* SelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC65F21B11D40E00C4D065 /* SelectController.swift */; };
-		49FC65F51B11D40E00C4D065 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC65F41B11D40E00C4D065 /* SettingsController.swift */; };
 		49FC65F81B11D40E00C4D065 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FC65F61B11D40E00C4D065 /* Main.storyboard */; };
 		49FC65FA1B11D40E00C4D065 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FC65F91B11D40E00C4D065 /* Images.xcassets */; };
 		49FC65FD1B11D40E00C4D065 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FC65FB1B11D40E00C4D065 /* LaunchScreen.xib */; };
 		49FC66091B11D40E00C4D065 /* LeafLanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC66081B11D40E00C4D065 /* LeafLanguageTests.swift */; };
+		49FECD171D292440001B5533 /* GlossaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD111D292440001B5533 /* GlossaryController.swift */; };
+		49FECD181D292440001B5533 /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD121D292440001B5533 /* GroupController.swift */; };
+		49FECD191D292440001B5533 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD131D292440001B5533 /* ReviewController.swift */; };
+		49FECD1A1D292440001B5533 /* SelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD141D292440001B5533 /* SelectController.swift */; };
+		49FECD1B1D292440001B5533 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD151D292440001B5533 /* SettingsController.swift */; };
+		49FECD1C1D292440001B5533 /* VocabularyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD161D292440001B5533 /* VocabularyController.swift */; };
+		49FECD201D292D34001B5533 /* JGActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD1F1D292D34001B5533 /* JGActionSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		496AAAD51B18E1CA00E39EFE /* GroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupController.swift; path = LeafLanguage/GroupController.swift; sourceTree = "<group>"; };
 		497E1EB11B1393C9004BE176 /* URLPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = URLPlayground.playground; sourceTree = "<group>"; };
 		4984626F1B1B81AF00C0A281 /* LeafConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafConfig.swift; sourceTree = "<group>"; };
 		49A74A8A1B373FB3001F1D59 /* LeafLanguage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LeafLanguage-Bridging-Header.h"; sourceTree = "<group>"; };
-		49C5F6641B14AD5200F6E18E /* VocabularyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VocabularyController.swift; path = LeafLanguage/VocabularyController.swift; sourceTree = "<group>"; };
 		49CDFC141D11373500D42443 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		49CDFC151D11373500D42443 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		49CDFC4C1D16E24800D42443 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundManager.swift; path = LeafLanguage/Manager/SoundManager.swift; sourceTree = "<group>"; };
@@ -56,20 +55,24 @@
 		49CDFC541D16E27E00D42443 /* VocabularyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VocabularyModel.swift; path = LeafLanguage/Model/VocabularyModel.swift; sourceTree = "<group>"; };
 		49CDFC591D16E31200D42443 /* RNFrostedSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNFrostedSidebar.h; path = RNFrostedSidebar/RNFrostedSidebar.h; sourceTree = "<group>"; };
 		49CDFC5A1D16E31200D42443 /* RNFrostedSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNFrostedSidebar.m; path = RNFrostedSidebar/RNFrostedSidebar.m; sourceTree = "<group>"; };
-		49CDFC691D1FE37300D42443 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReviewController.swift; path = LeafLanguage/ReviewController.swift; sourceTree = "<group>"; };
-		49CDFC6B1D1FEB9300D42443 /* GlossaryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlossaryController.swift; path = LeafLanguage/GlossaryController.swift; sourceTree = "<group>"; };
 		49CDFC6D1D213B3300D42443 /* ToastManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToastManager.swift; path = LeafLanguage/Manager/ToastManager.swift; sourceTree = "<group>"; };
 		49FC65EB1B11D40E00C4D065 /* LeafLanguage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeafLanguage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FC65EF1B11D40E00C4D065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49FC65F01B11D40E00C4D065 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49FC65F21B11D40E00C4D065 /* SelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectController.swift; path = LeafLanguage/SelectController.swift; sourceTree = "<group>"; };
-		49FC65F41B11D40E00C4D065 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsController.swift; path = LeafLanguage/SettingsController.swift; sourceTree = "<group>"; };
 		49FC65F71B11D40E00C4D065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49FC65F91B11D40E00C4D065 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49FC65FC1B11D40E00C4D065 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		49FC66021B11D40E00C4D065 /* LeafLanguageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeafLanguageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FC66071B11D40E00C4D065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49FC66081B11D40E00C4D065 /* LeafLanguageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeafLanguageTests.swift; sourceTree = "<group>"; };
+		49FECD111D292440001B5533 /* GlossaryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlossaryController.swift; path = LeafLanguage/Controller/GlossaryController.swift; sourceTree = "<group>"; };
+		49FECD121D292440001B5533 /* GroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupController.swift; path = LeafLanguage/Controller/GroupController.swift; sourceTree = "<group>"; };
+		49FECD131D292440001B5533 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReviewController.swift; path = LeafLanguage/Controller/ReviewController.swift; sourceTree = "<group>"; };
+		49FECD141D292440001B5533 /* SelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectController.swift; path = LeafLanguage/Controller/SelectController.swift; sourceTree = "<group>"; };
+		49FECD151D292440001B5533 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsController.swift; path = LeafLanguage/Controller/SettingsController.swift; sourceTree = "<group>"; };
+		49FECD161D292440001B5533 /* VocabularyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VocabularyController.swift; path = LeafLanguage/Controller/VocabularyController.swift; sourceTree = "<group>"; };
+		49FECD1E1D292D34001B5533 /* JGActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGActionSheet.h; path = JGActionSheet/JGActionSheet.h; sourceTree = "<group>"; };
+		49FECD1F1D292D34001B5533 /* JGActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGActionSheet.m; path = JGActionSheet/JGActionSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,12 +142,12 @@
 		49CDFC681D1FE32500D42443 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				49FC65F21B11D40E00C4D065 /* SelectController.swift */,
-				49FC65F41B11D40E00C4D065 /* SettingsController.swift */,
-				496AAAD51B18E1CA00E39EFE /* GroupController.swift */,
-				49C5F6641B14AD5200F6E18E /* VocabularyController.swift */,
-				49CDFC691D1FE37300D42443 /* ReviewController.swift */,
-				49CDFC6B1D1FEB9300D42443 /* GlossaryController.swift */,
+				49FECD111D292440001B5533 /* GlossaryController.swift */,
+				49FECD121D292440001B5533 /* GroupController.swift */,
+				49FECD131D292440001B5533 /* ReviewController.swift */,
+				49FECD141D292440001B5533 /* SelectController.swift */,
+				49FECD151D292440001B5533 /* SettingsController.swift */,
+				49FECD161D292440001B5533 /* VocabularyController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 		49FC65E21B11D40D00C4D065 = {
 			isa = PBXGroup;
 			children = (
+				49FECD1D1D292D22001B5533 /* JGActionSheet */,
 				49CDFC681D1FE32500D42443 /* Controller */,
 				49CDFC581D16E2F000D42443 /* RNFrostedSidebar */,
 				49CDFC491D1187C000D42443 /* ControlManager */,
@@ -213,6 +217,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		49FECD1D1D292D22001B5533 /* JGActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				49FECD1E1D292D34001B5533 /* JGActionSheet.h */,
+				49FECD1F1D292D34001B5533 /* JGActionSheet.m */,
+			);
+			name = JGActionSheet;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,9 +278,12 @@
 					49FC65EA1B11D40D00C4D065 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 4EWH4YWAKN;
+						LastSwiftMigration = 0800;
 					};
 					49FC66011B11D40E00C4D065 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 4EWH4YWAKN;
+						LastSwiftMigration = 0800;
 						TestTargetID = 49FC65EA1B11D40D00C4D065;
 					};
 				};
@@ -317,21 +333,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				498462701B1B81AF00C0A281 /* LeafConfig.swift in Sources */,
+				49FECD191D292440001B5533 /* ReviewController.swift in Sources */,
+				49FECD181D292440001B5533 /* GroupController.swift in Sources */,
 				49CDFC501D16E26C00D42443 /* ConnectionManager.swift in Sources */,
 				49CDFC551D16E27E00D42443 /* GlossaryModel.swift in Sources */,
-				49FC65F51B11D40E00C4D065 /* SettingsController.swift in Sources */,
+				49FECD171D292440001B5533 /* GlossaryController.swift in Sources */,
+				49FECD201D292D34001B5533 /* JGActionSheet.m in Sources */,
 				49CDFC5B1D16E31200D42443 /* RNFrostedSidebar.m in Sources */,
 				49FC65F11B11D40E00C4D065 /* AppDelegate.swift in Sources */,
-				49FC65F31B11D40E00C4D065 /* SelectController.swift in Sources */,
+				49FECD1B1D292440001B5533 /* SettingsController.swift in Sources */,
+				49FECD1C1D292440001B5533 /* VocabularyController.swift in Sources */,
 				49CDFC4D1D16E24800D42443 /* SoundManager.swift in Sources */,
 				49CDFC511D16E26C00D42443 /* DataIO.swift in Sources */,
-				49C5F6651B14AD5200F6E18E /* VocabularyController.swift in Sources */,
-				496AAAD61B18E1CA00E39EFE /* GroupController.swift in Sources */,
-				49CDFC6C1D1FEB9300D42443 /* GlossaryController.swift in Sources */,
 				49CDFC561D16E27E00D42443 /* ViewModel.swift in Sources */,
+				49FECD1A1D292440001B5533 /* SelectController.swift in Sources */,
 				49CDFC161D11373500D42443 /* MBProgressHUD.m in Sources */,
 				49CDFC6E1D213B3300D42443 /* ToastManager.swift in Sources */,
-				49CDFC6A1D1FE37300D42443 /* ReviewController.swift in Sources */,
 				49CDFC571D16E27E00D42443 /* VocabularyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,14 +482,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4EWH4YWAKN;
 				INFOPLIST_FILE = LeafLanguage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LeafMaple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LeafLanguage/LeafLanguage-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -484,13 +503,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4EWH4YWAKN;
 				INFOPLIST_FILE = LeafLanguage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LeafMaple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LeafLanguage/LeafLanguage-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -499,7 +520,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4EWH4YWAKN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -512,6 +535,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LeafMaple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LeafLanguage.app/LeafLanguage";
 			};
 			name = Debug;
@@ -520,7 +544,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4EWH4YWAKN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -529,6 +555,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LeafMaple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LeafLanguage.app/LeafLanguage";
 			};
 			name = Release;

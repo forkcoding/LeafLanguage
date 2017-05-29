@@ -8,18 +8,18 @@
 
 import Foundation
 
-class GlossaryController : UIViewController {
+class GlossaryController : UIViewController, UIActionSheetDelegate {
     
-    private var _SelectedLanguage = LANGUAGE.JAPANESE
+    fileprivate var _SelectedLanguage = LANGUAGE.japanese
     
-    private var _GlossaryArray: NSMutableDictionary?
-    private var _GlossaryIndexArray = [Int]()
+    fileprivate var _GlossaryArray: NSMutableDictionary?
+    fileprivate var _GlossaryIndexArray = [Int]()
     
-    private let END_STRING = "单词结束"
+    fileprivate let END_STRING = "单词结束"
     
-    private var _IndexArray = [Int]()
-    private var _Vocabulary: Vocabulary?
-    private var _RandomIndex = 0
+    fileprivate var _IndexArray = [Int]()
+    fileprivate var _Vocabulary: Vocabulary?
+    fileprivate var _RandomIndex = 0
     
     @IBOutlet weak var VocabularyLabel: UILabel!
     @IBOutlet weak var CountLabel: UILabel!
@@ -32,7 +32,7 @@ class GlossaryController : UIViewController {
     @IBOutlet weak var MeaningButton: UIButton!
     @IBOutlet weak var HardNumLabel: UILabel!
     
-    private var _SoundManager: SoundManager?
+    fileprivate var _SoundManager: SoundManager?
     
     override func viewDidLoad() {
         
@@ -45,7 +45,7 @@ class GlossaryController : UIViewController {
         
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         
         if (_GlossaryArray != nil) {
             GlossaryModel.SetModel(_GlossaryArray!)
@@ -72,12 +72,11 @@ class GlossaryController : UIViewController {
         
         if (_RandomIndex < _IndexArray.count - 1) {
             _RandomIndex = _RandomIndex + 1
+            UpdateVocabulary()
         }
-        UpdateVocabulary()
-        
     }
     
-    @IBAction func addBtnClick() {
+    @IBAction func AddBtnClick() {
         
         if (_GlossaryArray == nil) {
             
@@ -93,16 +92,12 @@ class GlossaryController : UIViewController {
             
             let StringID = String.init(_Vocabulary!.UniqueID)
             
-            if (_GlossaryArray![StringID] == nil) {
-                _GlossaryArray![StringID] = 1
-            }
-            else {
-                _GlossaryArray![StringID] = _GlossaryArray![StringID] as! Int + 1
-            }
+            _GlossaryArray![StringID] = _GlossaryArray![StringID] as! Int + 1
+            UpdateVocabulary()
         }
     }
     
-    @IBAction func soundClick() {
+    @IBAction func SoundClick() {
         
         if (_SoundManager == nil) {
             _SoundManager = SoundManager()
@@ -117,44 +112,64 @@ class GlossaryController : UIViewController {
     
     @IBAction func ShowExtClick() {
         
-        if (ExtVocLabel!.hidden) {
-            ExtVocLabel!.hidden = false
-            //ExtVocButton.setTitle("隐藏汉字", forState: UIControlState.Normal)
-            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOn"), forState: UIControlState.Normal)
+        if (ExtVocLabel!.isHidden) {
+            ExtVocLabel!.isHidden = false
+            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOn"), for: UIControlState())
         }
         else {
-            ExtVocLabel!.hidden = true
-            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOff"), forState: UIControlState.Normal)
+            ExtVocLabel!.isHidden = true
+            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOff"), for: UIControlState())
         }
     }
     
     @IBAction func ShowVocClick() {
         
-        if (VocabularyLabel!.hidden) {
-            VocabularyLabel!.hidden = false
-            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOn"), forState: UIControlState.Normal)
+        if (VocabularyLabel!.isHidden) {
+            VocabularyLabel!.isHidden = false
+            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOn"), for: UIControlState())
         }
         else {
-            VocabularyLabel!.hidden = true
-            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOff"), forState: UIControlState.Normal)
+            VocabularyLabel!.isHidden = true
+            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOff"), for: UIControlState())
         }
     }
     
     @IBAction func ShowMeaningClick() {
         
-        if (MeaningLabel.hidden) {
-            MeaningLabel.hidden = false
-            MeaningButton.setBackgroundImage(UIImage(named: "CNOn"), forState: UIControlState.Normal)
+        if (MeaningLabel.isHidden) {
+            MeaningLabel.isHidden = false
+            MeaningButton.setBackgroundImage(UIImage(named: "CNOn"), for: UIControlState())
         }
         else {
-            MeaningLabel.hidden = true
-            MeaningButton.setBackgroundImage(UIImage(named: "CNOff"), forState: UIControlState.Normal)
+            MeaningLabel.isHidden = true
+            MeaningButton.setBackgroundImage(UIImage(named: "CNOff"), for: UIControlState())
+        }
+    }
+    
+    @IBAction func ShowMenuClick(_ sender: AnyObject) {
+        let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: "删除")
+        
+        actionSheet.show(in: self.view)
+    }
+    
+    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+        if (buttonIndex == 0) {
+            
+            let StringID = String.init(_Vocabulary!.UniqueID)
+            _GlossaryArray!.removeObject(forKey: StringID)
+            
+            _IndexArray.remove(at: _RandomIndex)
+            if (_RandomIndex >= _IndexArray.count){
+                _RandomIndex = _RandomIndex - 1
+            }
+            
+            UpdateVocabulary()
         }
     }
     
     func InitView() {
-        ExtVocLabel.hidden = true
-        MeaningLabel.hidden = true
+        ExtVocLabel.isHidden = true
+        MeaningLabel.isHidden = true
         
         MeaningLabel.font = UIFont(name: "DBLCDTempBlack", size: 18.0)!
         CountLabel.font = UIFont(name: "DBLCDTempBlack", size: 20.0)
@@ -189,7 +204,7 @@ class GlossaryController : UIViewController {
                 let randomInt = Int(arc4random_uniform(UInt32(randomArr.count)))
                 
                 _IndexArray.append(randomArr[randomInt])
-                randomArr.removeAtIndex(randomInt)
+                randomArr.remove(at: randomInt)
             }
         }
         else {
@@ -219,14 +234,14 @@ class GlossaryController : UIViewController {
         }
         
         if (_RandomIndex == _IndexArray.count - 1) {
-            NextButton.enabled = false
+            NextButton.isEnabled = false
         }
         else {
-            NextButton.enabled = true
+            NextButton.isEnabled = true
         }
         
         if (LeafConfig.AutoPlaySound) {
-            soundClick()
+            SoundClick()
         }
     }
     
@@ -234,23 +249,39 @@ class GlossaryController : UIViewController {
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
         leftSwipe.numberOfTouchesRequired = 1
-        leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(leftSwipe)
         
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
         rightSwipe.numberOfTouchesRequired = 1
-        rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(rightSwipe)
+        
+        let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
+        upSwipe.numberOfTouchesRequired = 1
+        upSwipe.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(upSwipe)
+        
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
+        downSwipe.numberOfTouchesRequired = 1
+        downSwipe.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(downSwipe)
     }
     
-    func HandleSwipeGesture(sender: UISwipeGestureRecognizer) {
+    func HandleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
         
         switch (sender.direction){
-        case UISwipeGestureRecognizerDirection.Left:
+        case UISwipeGestureRecognizerDirection.left:
             UpdateNext()
             break
-        case UISwipeGestureRecognizerDirection.Right:
+        case UISwipeGestureRecognizerDirection.right:
             UpdatePrev()
+            break
+        case UISwipeGestureRecognizerDirection.up:
+            AddBtnClick()
+            break
+        case UISwipeGestureRecognizerDirection.down:
+            SoundClick()
             break
         default:
             break;

@@ -10,20 +10,20 @@ import UIKit
 
 class VocabularyController : UIViewController {
     
-    private var _SelectedLanguage = LANGUAGE.JAPANESE
-    private var _SelectedGroup = -1
-    private var _SelectedLesson = -1
+    fileprivate var _SelectedLanguage = LANGUAGE.japanese
+    fileprivate var _SelectedGroup = -1
+    fileprivate var _SelectedLesson = -1
     
-    private var _StartID = -1
-    private var _EndID = -1
+    fileprivate var _StartID = -1
+    fileprivate var _EndID = -1
     
-    private var _GlossaryArray: NSMutableDictionary?
+    fileprivate var _GlossaryArray: NSMutableDictionary?
     
-    private let END_STRING = "单词结束"
+    fileprivate let END_STRING = "单词结束"
     
-    private var _IndexArray = [Int]()
-    private var _Vocabulary: Vocabulary?
-    private var _RandomIndex = 0
+    fileprivate var _IndexArray = [Int]()
+    fileprivate var _Vocabulary: Vocabulary?
+    fileprivate var _RandomIndex = 0
     
     @IBOutlet weak var VocabularyLabel: UILabel!
     @IBOutlet weak var CountLabel: UILabel!
@@ -35,7 +35,7 @@ class VocabularyController : UIViewController {
     @IBOutlet weak var VocabularyButton: UIButton!
     @IBOutlet weak var MeaningButton: UIButton!
     
-    private var _SoundManager: SoundManager?
+    fileprivate var _SoundManager: SoundManager?
     
     override func viewDidLoad() {
         
@@ -48,7 +48,7 @@ class VocabularyController : UIViewController {
         
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         
         if (_GlossaryArray != nil) {
             GlossaryModel.SetModel(_GlossaryArray!)
@@ -75,12 +75,11 @@ class VocabularyController : UIViewController {
         
         if (_RandomIndex < _IndexArray.count) {
             _RandomIndex = _RandomIndex + 1
+            UpdateVocabulary()
         }
-        UpdateVocabulary()
-        
     }
     
-    @IBAction func addBtnClick() {
+    @IBAction func AddBtnClick() {
         
         if (_GlossaryArray == nil) {
             
@@ -107,7 +106,7 @@ class VocabularyController : UIViewController {
         }
     }
     
-    @IBAction func soundClick() {
+    @IBAction func SoundClick() {
         
         if (_SoundManager == nil) {
             _SoundManager = SoundManager()
@@ -122,44 +121,43 @@ class VocabularyController : UIViewController {
     
     @IBAction func ShowExtClick() {
         
-        if (ExtVocLabel!.hidden) {
-            ExtVocLabel!.hidden = false
-            //ExtVocButton.setTitle("隐藏汉字", forState: UIControlState.Normal)
-            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOn"), forState: UIControlState.Normal)
+        if (ExtVocLabel!.isHidden) {
+            ExtVocLabel!.isHidden = false
+            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOn"), for: UIControlState())
         }
         else {
-            ExtVocLabel!.hidden = true
-            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOff"), forState: UIControlState.Normal)
+            ExtVocLabel!.isHidden = true
+            ExtVocButton.setBackgroundImage(UIImage(named: "ExtOff"), for: UIControlState())
         }
     }
     
     @IBAction func ShowVocClick() {
         
-        if (VocabularyLabel!.hidden) {
-            VocabularyLabel!.hidden = false
-            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOn"), forState: UIControlState.Normal)
+        if (VocabularyLabel!.isHidden) {
+            VocabularyLabel!.isHidden = false
+            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOn"), for: UIControlState())
         }
         else {
-            VocabularyLabel!.hidden = true
-            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOff"), forState: UIControlState.Normal)
+            VocabularyLabel!.isHidden = true
+            VocabularyButton.setBackgroundImage(UIImage(named: "JPNOff"), for: UIControlState())
         }
     }
     
     @IBAction func ShowMeaningClick() {
         
-        if (MeaningLabel!.hidden) {
-            MeaningLabel!.hidden = false
-            MeaningButton.setBackgroundImage(UIImage(named: "CNOn"), forState: UIControlState.Normal)
+        if (MeaningLabel!.isHidden) {
+            MeaningLabel!.isHidden = false
+            MeaningButton.setBackgroundImage(UIImage(named: "CNOn"), for: UIControlState())
         }
         else {
-            MeaningLabel!.hidden = true
-            MeaningButton.setBackgroundImage(UIImage(named: "CNOff"), forState: UIControlState.Normal)
+            MeaningLabel!.isHidden = true
+            MeaningButton.setBackgroundImage(UIImage(named: "CNOff"), for: UIControlState())
         }
     }
     
     func InitView() {
-        ExtVocLabel!.hidden = true
-        MeaningLabel!.hidden = true
+        ExtVocLabel!.isHidden = true
+        MeaningLabel!.isHidden = true
         
         MeaningLabel!.font = UIFont(name: "DBLCDTempBlack", size: 18.0)
         CountLabel!.font = UIFont(name: "DBLCDTempBlack", size: 20.0)
@@ -181,7 +179,7 @@ class VocabularyController : UIViewController {
                 let randomInt = Int(arc4random_uniform(UInt32(randomArr.count)))
                 
                 _IndexArray.append(randomArr[randomInt])
-                randomArr.removeAtIndex(randomInt)
+                randomArr.remove(at: randomInt)
             }
         }
         else {
@@ -205,19 +203,14 @@ class VocabularyController : UIViewController {
             CountLabel?.text = "\(indexString)/\(countString)"
         }
         
-        if (_RandomIndex < _IndexArray.count - 1) {
-            NextButton.enabled = true
-        }
-        else {
-            NextButton.enabled = false
-        }
+        NextButton.isEnabled = _RandomIndex < _IndexArray.count - 1
         
         if (LeafConfig.AutoPlaySound) {
-            soundClick()
+            SoundClick()
         }
     }
     
-    func SetVocabularyID(startID: Int, endID: Int) {
+    func SetVocabularyID(_ startID: Int, endID: Int) {
         _StartID = startID
         _EndID = endID
     }
@@ -226,23 +219,39 @@ class VocabularyController : UIViewController {
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
         leftSwipe.numberOfTouchesRequired = 1
-        leftSwipe.direction = UISwipeGestureRecognizerDirection.Left
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(leftSwipe)
         
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
         rightSwipe.numberOfTouchesRequired = 1
-        rightSwipe.direction = UISwipeGestureRecognizerDirection.Right
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(rightSwipe)
+        
+        let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
+        upSwipe.numberOfTouchesRequired = 1
+        upSwipe.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(upSwipe)
+        
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
+        downSwipe.numberOfTouchesRequired = 1
+        downSwipe.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(downSwipe)
     }
     
-    func HandleSwipeGesture(sender: UISwipeGestureRecognizer) {
+    func HandleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
 
         switch (sender.direction){
-        case UISwipeGestureRecognizerDirection.Left:
+        case UISwipeGestureRecognizerDirection.left:
             UpdateNext()
             break
-        case UISwipeGestureRecognizerDirection.Right:
+        case UISwipeGestureRecognizerDirection.right:
             UpdatePrev()
+            break
+        case UISwipeGestureRecognizerDirection.up:
+            AddBtnClick()
+            break
+        case UISwipeGestureRecognizerDirection.down:
+            SoundClick()
             break
         default:
             break;

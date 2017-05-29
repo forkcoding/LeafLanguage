@@ -12,63 +12,63 @@ class GroupController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet var m_tableView: UITableView?
     
-    private let TITLE_STRING = "课程选择"
+    fileprivate let TITLE_STRING = "课程选择"
     
-    private var _GroupIndex = -1
-    private var _Language = LANGUAGE.JAPANESE
-    private var _StartLesson = -1
+    fileprivate var _GroupIndex = -1
+    fileprivate var _Language = LANGUAGE.japanese
+    fileprivate var _StartLesson = -1
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        let backItem = UIBarButtonItem(title: TITLE_STRING, style: .Done, target: nil, action: nil)
+        let backItem = UIBarButtonItem(title: TITLE_STRING, style: .done, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backItem
         self.navigationItem.title = "第\(LeafConfig.ConvertToNumber(_GroupIndex + 1))单元"
         
-        self.navigationController!.navigationBar.backgroundColor = UIColor.blackColor()
+        self.navigationController!.navigationBar.backgroundColor = UIColor.black
         
         //self.navigationItem.co
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return VocabularyModel.GetLessonCount(_Language, GroupID: _GroupIndex) + 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CellId")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CellId")
         if (cell == nil) {
-            cell = UITableViewCell(style:.Default, reuseIdentifier:"CellId")
+            cell = UITableViewCell(style:.default, reuseIdentifier:"CellId")
         }
         
-        cell?.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
-        if (indexPath.row == 0) {
+        if ((indexPath as NSIndexPath).row == 0) {
             cell!.textLabel!.text = "全部单词"
         }
         else {
-            cell!.textLabel!.text = "第\(LeafConfig.ConvertToNumber(indexPath.row + VocabularyModel.GetLessonCountOfGroup() * _GroupIndex))课"
+            cell!.textLabel!.text = "第\(LeafConfig.ConvertToNumber((indexPath as NSIndexPath).row + VocabularyModel.GetLessonCountOfGroup() * _GroupIndex))课"
         }
         
-        cell!.textLabel!.textAlignment = NSTextAlignment.Center
+        cell!.textLabel!.textAlignment = NSTextAlignment.center
         return cell!
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         var startLs = 0
         var endLs = 0
         var startID = 0
         var endID = 0
         
-        if (indexPath.row == 0) {
+        if ((indexPath as NSIndexPath).row == 0) {
             startLs = _StartLesson
             endLs = _StartLesson + VocabularyModel.GetLessonCount(_Language, GroupID: _GroupIndex)
         }
         else {
-            startLs = _StartLesson + indexPath.row - 1
-            endLs = _StartLesson + indexPath.row
+            startLs = _StartLesson + (indexPath as NSIndexPath).row - 1
+            endLs = _StartLesson + (indexPath as NSIndexPath).row
         }
         
         startID = VocabularyModel.GetCountID(_Language, lesson: startLs)
@@ -79,7 +79,7 @@ class GroupController: UIViewController, UITableViewDelegate, UITableViewDataSou
             endID = VocabularyModel.GetVocabularyCount(_Language)
         }
             
-        let VocView = self.storyboard?.instantiateViewControllerWithIdentifier("WordView") as! VocabularyController
+        let VocView = self.storyboard?.instantiateViewController(withIdentifier: "WordView") as! VocabularyController
             
         VocView.SetVocabularyID(startID, endID: endID)
             
@@ -87,12 +87,12 @@ class GroupController: UIViewController, UITableViewDelegate, UITableViewDataSou
         
     }
     
-    func SetGroup(groupIndex:Int) {
+    func SetGroup(_ groupIndex:Int) {
         _GroupIndex = groupIndex
         _StartLesson = _GroupIndex * VocabularyModel.GetLessonCountOfGroup()
     }
     
-    func SetLanguage(langue:LANGUAGE) {
+    func SetLanguage(_ langue:LANGUAGE) {
         _Language = langue
     }
 }

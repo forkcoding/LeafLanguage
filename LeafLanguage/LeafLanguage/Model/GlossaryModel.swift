@@ -10,15 +10,15 @@ import Foundation
 
 class GlossaryModel {
     
-    static private let GLOSSARY_PATH = "glossary.jason"
-    static private var _GlossaryArray: NSDictionary? = nil
+    static fileprivate let GLOSSARY_PATH = "glossary.jason"
+    static fileprivate var _GlossaryArray: NSDictionary? = nil
     
     static func GetModel() -> NSDictionary? {
         
         if (_GlossaryArray == nil) {
             
             if let data = DataIO.Read(GLOSSARY_PATH) {
-                let dataJason: AnyObject? = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+                let dataJason: AnyObject? = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as AnyObject?
                  _GlossaryArray = dataJason as? NSDictionary
             }
         }
@@ -26,13 +26,13 @@ class GlossaryModel {
         return _GlossaryArray
     }
     
-    static func SetModel(array: NSDictionary) {
+    static func SetModel(_ array: NSDictionary) {
         _GlossaryArray = array
     }
     
     static func SaveModel() {
         
-        let data = try! NSJSONSerialization.dataWithJSONObject(_GlossaryArray as! AnyObject, options:NSJSONWritingOptions.PrettyPrinted)
+        let data = try! JSONSerialization.data(withJSONObject: _GlossaryArray as AnyObject, options:JSONSerialization.WritingOptions.prettyPrinted)
         
         DataIO.Write(GLOSSARY_PATH, data: data)
     }

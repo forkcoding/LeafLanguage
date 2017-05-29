@@ -10,55 +10,55 @@ import Foundation
 
 class DataIO {
     
-    static func Write(fileName: String, directory: String, data: NSData) {
+    static func Write(_ fileName: String, directory: String, data: Data) {
         
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths[0] as NSString
         
-        let directioryPath = path.stringByAppendingPathComponent(directory)
-        if (fileManager.fileExistsAtPath(directioryPath)) {
-            try! fileManager.createDirectoryAtPath(directioryPath, withIntermediateDirectories: true, attributes: nil)
+        let directioryPath = path.appendingPathComponent(directory)
+        if (fileManager.fileExists(atPath: directioryPath)) {
+            try! fileManager.createDirectory(atPath: directioryPath, withIntermediateDirectories: true, attributes: nil)
         }
         
-        let filePath = (directioryPath as NSString).stringByAppendingPathComponent(fileName)
-        data.writeToFile(filePath, atomically: true)
+        let filePath = (directioryPath as NSString).appendingPathComponent(fileName)
+        try? data.write(to: URL(fileURLWithPath: filePath), options: [.atomic])
     }
     
-    static func CreateDirectory(directory: String) {
+    static func CreateDirectory(_ directory: String) {
         
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths[0] as NSString
         
-        let directioryPath = path.stringByAppendingPathComponent(directory)
-        if (!fileManager.fileExistsAtPath(directioryPath)) {
-            try! fileManager.createDirectoryAtPath(directioryPath, withIntermediateDirectories: true, attributes: nil)
+        let directioryPath = path.appendingPathComponent(directory)
+        if (!fileManager.fileExists(atPath: directioryPath)) {
+            try! fileManager.createDirectory(atPath: directioryPath, withIntermediateDirectories: true, attributes: nil)
         }
 
     }
     
-    static func Write(fileName: String, data: NSData) {
+    static func Write(_ fileName: String, data: Data) {
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths[0] as NSString
-        let filePath = path.stringByAppendingPathComponent(fileName)
+        let filePath = path.appendingPathComponent(fileName)
         
-        data.writeToFile(filePath, atomically: true)
+        try? data.write(to: URL(fileURLWithPath: filePath), options: [.atomic])
     }
     
-    static func Read(fileName: String) -> NSData? {
+    static func Read(_ fileName: String) -> Data? {
         
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths[0] as NSString
-        let filePath = path.stringByAppendingPathComponent(fileName)
+        let filePath = path.appendingPathComponent(fileName)
         
-        if (fileManager.fileExistsAtPath(filePath)) {
-            return fileManager.contentsAtPath(filePath)
+        if (fileManager.fileExists(atPath: filePath)) {
+            return fileManager.contents(atPath: filePath)
         }
         
         return nil

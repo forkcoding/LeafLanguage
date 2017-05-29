@@ -11,23 +11,23 @@ import AVFoundation
 
 class SoundManager : NSObject {
     
-    private let SOUND_PATH = "sound"
+    fileprivate let SOUND_PATH = "sound"
     
-    private var _AudioPlayer: AVAudioPlayer?
-    private var _PlayerTimer: NSTimer?
+    fileprivate var _AudioPlayer: AVAudioPlayer?
+    fileprivate var _PlayerTimer: Timer?
     
     func PlayEndFunc() {
         _AudioPlayer!.stop()
     }
     
-    func Play(fileName: String, startTime: Double, endTime: Double) {
+    func Play(_ fileName: String, startTime: Double, endTime: Double) {
         
-        if (_AudioPlayer != nil && _AudioPlayer!.playing == true) {
+        if (_AudioPlayer != nil && _AudioPlayer!.isPlaying == true) {
             _AudioPlayer!.stop()
         }
         
         if (_PlayerTimer != nil) {
-            _PlayerTimer?.fire()
+            _PlayerTimer!.fire()
         }
         
         let soundData = GetSound(fileName)
@@ -41,7 +41,7 @@ class SoundManager : NSObject {
         
         if (endTime > startTime) {
             
-            _PlayerTimer = NSTimer.scheduledTimerWithTimeInterval(endTime - startTime, target: self, selector: #selector(SoundManager.PlayEndFunc), userInfo: nil, repeats: false)
+            _PlayerTimer = Timer.scheduledTimer(timeInterval: endTime - startTime, target: self, selector: #selector(SoundManager.PlayEndFunc), userInfo: nil, repeats: false)
             
         }
         
@@ -49,9 +49,9 @@ class SoundManager : NSObject {
         
     }
     
-    func Play(startTime: Double, endTime: Double) {
+    func Play(_ startTime: Double, endTime: Double) {
         
-        if (_AudioPlayer != nil && _AudioPlayer!.playing == true) {
+        if (_AudioPlayer != nil && _AudioPlayer!.isPlaying == true) {
             _AudioPlayer!.stop()
         }
         
@@ -59,11 +59,11 @@ class SoundManager : NSObject {
         _AudioPlayer!.currentTime = startTime
         _AudioPlayer!.prepareToPlay()
         
-        _PlayerTimer = NSTimer.scheduledTimerWithTimeInterval(endTime - startTime, target:self, selector: #selector(SoundManager.PlayEndFunc), userInfo:nil, repeats: false)
+        _PlayerTimer = Timer.scheduledTimer(timeInterval: endTime - startTime, target:self, selector: #selector(SoundManager.PlayEndFunc), userInfo:nil, repeats: false)
         
     }
     
-    func GetSound(fileName: String) -> NSData? {
+    func GetSound(_ fileName: String) -> Data? {
         
         let soundPath = LeafConfig.ConvertToPath(fileName, fileType: "mp3", directory: SOUND_PATH)
         var soundData = DataIO.Read(soundPath)
@@ -75,13 +75,13 @@ class SoundManager : NSObject {
         return soundData
     }
     
-    func SaveSound(soundPath: String, soundData: NSData) {
+    func SaveSound(_ soundPath: String, soundData: Data) {
         
         DataIO.CreateDirectory(SOUND_PATH)
         DataIO.Write(soundPath, data: soundData)
     }
     
-    func UpdateSound(soundPath: String) -> NSData? {
+    func UpdateSound(_ soundPath: String) -> Data? {
         
         let connectionMgr = ConnectionManager()
         let soundURLPath = LeafConfig.GetURLPath(soundPath)
