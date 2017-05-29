@@ -28,7 +28,6 @@
 		49FECD1A1D292440001B5533 /* SelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD141D292440001B5533 /* SelectController.swift */; };
 		49FECD1B1D292440001B5533 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD151D292440001B5533 /* SettingsController.swift */; };
 		49FECD1C1D292440001B5533 /* VocabularyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD161D292440001B5533 /* VocabularyController.swift */; };
-		49FECD201D292D34001B5533 /* JGActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FECD1F1D292D34001B5533 /* JGActionSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,8 +70,6 @@
 		49FECD141D292440001B5533 /* SelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectController.swift; path = LeafLanguage/Controller/SelectController.swift; sourceTree = "<group>"; };
 		49FECD151D292440001B5533 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsController.swift; path = LeafLanguage/Controller/SettingsController.swift; sourceTree = "<group>"; };
 		49FECD161D292440001B5533 /* VocabularyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VocabularyController.swift; path = LeafLanguage/Controller/VocabularyController.swift; sourceTree = "<group>"; };
-		49FECD1E1D292D34001B5533 /* JGActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGActionSheet.h; path = JGActionSheet/JGActionSheet.h; sourceTree = "<group>"; };
-		49FECD1F1D292D34001B5533 /* JGActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGActionSheet.m; path = JGActionSheet/JGActionSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +152,6 @@
 		49FC65E21B11D40D00C4D065 = {
 			isa = PBXGroup;
 			children = (
-				49FECD1D1D292D22001B5533 /* JGActionSheet */,
 				49CDFC681D1FE32500D42443 /* Controller */,
 				49CDFC581D16E2F000D42443 /* RNFrostedSidebar */,
 				49CDFC491D1187C000D42443 /* ControlManager */,
@@ -215,15 +211,6 @@
 				49FC66071B11D40E00C4D065 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		49FECD1D1D292D22001B5533 /* JGActionSheet */ = {
-			isa = PBXGroup;
-			children = (
-				49FECD1E1D292D34001B5533 /* JGActionSheet.h */,
-				49FECD1F1D292D34001B5533 /* JGActionSheet.m */,
-			);
-			name = JGActionSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +325,6 @@
 				49CDFC501D16E26C00D42443 /* ConnectionManager.swift in Sources */,
 				49CDFC551D16E27E00D42443 /* GlossaryModel.swift in Sources */,
 				49FECD171D292440001B5533 /* GlossaryController.swift in Sources */,
-				49FECD201D292D34001B5533 /* JGActionSheet.m in Sources */,
 				49CDFC5B1D16E31200D42443 /* RNFrostedSidebar.m in Sources */,
 				49FC65F11B11D40E00C4D065 /* AppDelegate.swift in Sources */,
 				49FECD1B1D292440001B5533 /* SettingsController.swift in Sources */,
