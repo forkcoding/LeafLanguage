@@ -12,7 +12,6 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     
     fileprivate var _SelectedLanguage = LANGUAGE.japanese
     
-    fileprivate var _GlossaryArray: NSMutableDictionary?
     fileprivate var _GlossaryIndexArray = [Int]()
     
     fileprivate let END_STRING = "单词结束"
@@ -46,12 +45,7 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
-        if (_GlossaryArray != nil) {
-            GlossaryModel.SetModel(_GlossaryArray!)
-            GlossaryModel.SaveModel()
-        }
-        
+        GlossaryModel.SaveModel()
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,22 +71,9 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func AddBtnClick() {
-        
-        if (_GlossaryArray == nil) {
-            
-            if let glossaryModel = GlossaryModel.GetModel() {
-                _GlossaryArray = NSMutableDictionary(dictionary: glossaryModel)
-            }
-            else {
-                _GlossaryArray = NSMutableDictionary()
-            }
-        }
-        
         if (_Vocabulary != nil) {
-            
-            let StringID = String.init(_Vocabulary!.UniqueID)
-            
-            _GlossaryArray![StringID] = _GlossaryArray![StringID] as! Int + 1
+            let id = String.init(_Vocabulary!.UniqueID)
+            GlossaryModel.Add(key: id, num: 1)
             UpdateVocabulary()
         }
     }
@@ -111,7 +92,6 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func ShowExtClick() {
-        
         if (ExtVocLabel!.isHidden) {
             ExtVocLabel!.isHidden = false
             ExtVocButton.setBackgroundImage(UIImage(named: "ExtOn"), for: UIControlState())
@@ -154,15 +134,12 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     
     func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 0) {
-            
-            let StringID = String.init(_Vocabulary!.UniqueID)
-            _GlossaryArray!.removeObject(forKey: StringID)
-            
+            let id = String.init(_Vocabulary!.UniqueID)
+            GlossaryModel.Remove(key: id)
             _IndexArray.remove(at: _RandomIndex)
             if (_RandomIndex >= _IndexArray.count){
                 _RandomIndex = _RandomIndex - 1
             }
-            
             UpdateVocabulary()
         }
     }
@@ -177,22 +154,14 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     func InitVocabulary() {
-        
         var randomArr = Array<Int>()
         
-        if let glossaryModel = GlossaryModel.GetModel() {
-            _GlossaryArray = NSMutableDictionary(dictionary: glossaryModel)
-        }
-        else {
-            _GlossaryArray = NSMutableDictionary()
-        }
-        
-        for i in 0..._GlossaryArray!.count - 1 {
+        for i in 0...GlossaryModel.Count() - 1 {
             randomArr.append(i)
         }
         
         _GlossaryIndexArray.removeAll()
-        for key in _GlossaryArray!.keyEnumerator() {
+        for key in GlossaryModel.Enumerator() {
             _GlossaryIndexArray.append(Int(key as! String)!)
         }
         
@@ -228,9 +197,8 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
             
             CountLabel.text = "\(indexString)/\(countString)"
             
-            let StringID = String.init(_Vocabulary!.UniqueID)
-            
-            HardNumLabel.text = "\(_GlossaryArray![StringID] as! Int)"
+            let id = String.init(_Vocabulary!.UniqueID)
+            HardNumLabel.text = "\(GlossaryModel.Get(key: id))"
         }
         
         if (_RandomIndex == _IndexArray.count - 1) {

@@ -17,8 +17,6 @@ class VocabularyController : UIViewController {
     fileprivate var _StartID = -1
     fileprivate var _EndID = -1
     
-    fileprivate var _GlossaryArray: NSMutableDictionary?
-    
     fileprivate let END_STRING = "单词结束"
     
     fileprivate var _IndexArray = [Int]()
@@ -29,6 +27,7 @@ class VocabularyController : UIViewController {
     @IBOutlet weak var CountLabel: UILabel!
     @IBOutlet weak var ExtVocLabel: UILabel!
     @IBOutlet weak var MeaningLabel: UILabel!
+    @IBOutlet weak var HardNumLabel: UILabel!
     
     @IBOutlet weak var NextButton: UIButton!
     @IBOutlet weak var ExtVocButton: UIButton!
@@ -38,7 +37,6 @@ class VocabularyController : UIViewController {
     fileprivate var _SoundManager: SoundManager?
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         InitView()
@@ -49,12 +47,7 @@ class VocabularyController : UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
-        if (_GlossaryArray != nil) {
-            GlossaryModel.SetModel(_GlossaryArray!)
-            GlossaryModel.SaveModel()
-        }
-        
+        GlossaryModel.SaveModel()
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,28 +73,10 @@ class VocabularyController : UIViewController {
     }
     
     @IBAction func AddBtnClick() {
-        
-        if (_GlossaryArray == nil) {
-            
-            if let glossaryModel = GlossaryModel.GetModel() {
-                _GlossaryArray = NSMutableDictionary(dictionary: glossaryModel)
-            }
-            else {
-                _GlossaryArray = NSMutableDictionary()
-            }
-        }
-        
         if (_Vocabulary != nil) {
-            
-            let StringID = String.init(_Vocabulary!.UniqueID)
-            
-            if (_GlossaryArray![StringID] == nil) {
-                _GlossaryArray![StringID] = 1
-            }
-            else {
-                _GlossaryArray![StringID] = _GlossaryArray![StringID] as! Int + 1
-            }
-            
+            let id = String.init(_Vocabulary!.UniqueID)
+            GlossaryModel.Add(key: id, num: 1)
+            HardNumLabel.text = "\(GlossaryModel.Get(key: id))"
             ToastManager.Show("已添加到生词表", timeOut: 2)
         }
     }
@@ -156,11 +131,12 @@ class VocabularyController : UIViewController {
     }
     
     func InitView() {
-        ExtVocLabel!.isHidden = true
-        MeaningLabel!.isHidden = true
+        ExtVocLabel.isHidden = true
+        MeaningLabel.isHidden = true
         
-        MeaningLabel!.font = UIFont(name: "DBLCDTempBlack", size: 18.0)
+        MeaningLabel.font = UIFont(name: "DBLCDTempBlack", size: 18.0)
         CountLabel!.font = UIFont(name: "DBLCDTempBlack", size: 20.0)
+        HardNumLabel.font = UIFont(name: "DBLCDTempBlack", size: 20.0)
     }
     
     func InitVocabulary() {
@@ -188,19 +164,19 @@ class VocabularyController : UIViewController {
     }
     
     func UpdateVocabulary() {
-        
         if (_RandomIndex < _IndexArray.count) {
-            
             _Vocabulary = VocabularyModel.GetVocabulary(_SelectedLanguage, uniqueID: _IndexArray[_RandomIndex])
-            
             VocabularyLabel!.text = _Vocabulary!.Word
-            ExtVocLabel!.text = _Vocabulary!.CNWord
+            ExtVocLabel.text = _Vocabulary!.CNWord
             MeaningLabel.text = _Vocabulary!.Meaning
+            
+            let id = String.init(_Vocabulary!.UniqueID)
+            HardNumLabel.text = "\(GlossaryModel.Get(key: id))"
             
             let indexString = NSString(format: "%03d", _RandomIndex + 1)
             let countString = NSString(format: "%03d", _IndexArray.count)
             
-            CountLabel?.text = "\(indexString)/\(countString)"
+            CountLabel.text = "\(indexString)/\(countString)"
         }
         
         NextButton.isEnabled = _RandomIndex < _IndexArray.count - 1
