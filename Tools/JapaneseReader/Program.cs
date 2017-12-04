@@ -198,7 +198,7 @@ namespace Language
                                     szSoundLine = soundReader.ReadLine();
                                     szSoundLine.Trim();
                                     String[] szSoundSplitArray = szSoundLine.Split('[', ']', ':');
-                                    double dSoundTime = int.Parse(szSoundSplitArray[1]) * 60 + double.Parse(szSoundSplitArray[2]);
+                                    double dSoundTime = Math.Round(int.Parse(szSoundSplitArray[1]) * 60 + double.Parse(szSoundSplitArray[2]), 2);
 
                                     VocabularyStruct word = new VocabularyStruct(szVoc, szExtVoc, szType, szMeaning, dSoundTime);
                                     Lesson.Add(word);
