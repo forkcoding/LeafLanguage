@@ -30,6 +30,9 @@ class SettingsController: UIViewController {
     
     @IBAction func UpdateBtnClick(){
         VocabularyModel.IUpdateScript(LANGUAGE.japanese)
+        VocabularyModel.UpdateVocArr(LANGUAGE.japanese)
+        VocabularyModel.IUpdateScript(LANGUAGE.english)
+        VocabularyModel.UpdateVocArr(LANGUAGE.english)
         let alert = UIAlertView(title: "更新完成", message: "数据已经完成更新！", delegate: self, cancelButtonTitle: "确定")
         alert.show()
     }

@@ -14,8 +14,8 @@ class GroupController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     fileprivate let TITLE_STRING = "课程选择"
     
-    fileprivate var _GroupIndex = -1
     fileprivate var _Language = LANGUAGE.japanese
+    fileprivate var _GroupIndex = -1
     fileprivate var _StartLesson = -1
     
     override func viewDidLoad() {
@@ -80,19 +80,19 @@ class GroupController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
             
         let VocView = self.storyboard?.instantiateViewController(withIdentifier: "WordView") as! VocabularyController
-            
+        
+        VocView.SetLanguage(_Language)
         VocView.SetVocabularyID(startID, endID: endID)
             
         self.navigationController?.pushViewController(VocView, animated: true)
         
     }
     
+    func SetLanguage(_ langue:LANGUAGE) {
+        _Language = langue
+    }
     func SetGroup(_ groupIndex:Int) {
         _GroupIndex = groupIndex
         _StartLesson = _GroupIndex * VocabularyModel.GetLessonCountOfGroup()
-    }
-    
-    func SetLanguage(_ langue:LANGUAGE) {
-        _Language = langue
     }
 }

@@ -10,9 +10,7 @@ import UIKit
 
 class VocabularyController : UIViewController {
     
-    fileprivate var _SelectedLanguage = LANGUAGE.japanese
-    fileprivate var _SelectedGroup = -1
-    fileprivate var _SelectedLesson = -1
+    fileprivate var _Language = LANGUAGE.japanese
     
     fileprivate var _StartID = -1
     fileprivate var _EndID = -1
@@ -165,7 +163,7 @@ class VocabularyController : UIViewController {
     
     func UpdateVocabulary() {
         if (_RandomIndex < _IndexArray.count) {
-            _Vocabulary = VocabularyModel.GetVocabulary(_SelectedLanguage, uniqueID: _IndexArray[_RandomIndex])
+            _Vocabulary = VocabularyModel.GetVocabulary(_Language, uniqueID: _IndexArray[_RandomIndex])
             VocabularyLabel!.text = _Vocabulary!.Word
             ExtVocLabel.text = _Vocabulary!.CNWord
             MeaningLabel.text = _Vocabulary!.Meaning
@@ -184,6 +182,10 @@ class VocabularyController : UIViewController {
         if (LeafConfig.AutoPlaySound) {
             SoundClick()
         }
+    }
+    
+    func SetLanguage(_ language:LANGUAGE) {
+        _Language = language
     }
     
     func SetVocabularyID(_ startID: Int, endID: Int) {

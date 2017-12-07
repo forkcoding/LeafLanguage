@@ -79,8 +79,8 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         else {
             let GroupView = self.storyboard?.instantiateViewController(withIdentifier: "GroupView") as! GroupController
             
-            GroupView.SetGroup(groupID)
             GroupView.SetLanguage(_Language)
+            GroupView.SetGroup(groupID)
             
             self.navigationController?.pushViewController(GroupView, animated: true)
             

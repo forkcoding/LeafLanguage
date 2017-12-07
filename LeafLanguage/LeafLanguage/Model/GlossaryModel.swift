@@ -10,7 +10,7 @@ import Foundation
 
 class GlossaryModel {
     
-    static fileprivate let GLOSSARY_PATH = "glossary.jason"
+    static fileprivate let GLOSSARY_PATH = "glossary.json"
     static fileprivate var _glsMulDict: NSMutableDictionary? = nil
     
     static private func GetJson() -> AnyObject? {
