@@ -198,7 +198,7 @@ namespace Language
                                     szSoundLine = soundReader.ReadLine();
                                     szSoundLine.Trim();
                                     String[] szSoundSplitArray = szSoundLine.Split('[', ']', ':');
-                                    double dSoundTime = int.Parse(szSoundSplitArray[1]) * 60 + double.Parse(szSoundSplitArray[2]);
+                                    double dSoundTime = Math.Round(int.Parse(szSoundSplitArray[1]) * 60 + double.Parse(szSoundSplitArray[2]), 2);
 
                                     VocabularyStruct word = new VocabularyStruct(szVoc, szExtVoc, szType, szMeaning, dSoundTime);
                                     Lesson.Add(word);
@@ -269,6 +269,10 @@ namespace Language
                 if (!regEnglish.IsMatch(wordSplit[1]))
                 {
                     continue;
+                }
+                for (int i = 1; i < 4; i++)
+                {
+                    wordSplit[i] = wordSplit[i].Replace("\"", "");
                 }
 
                 wordDic[wordSplit[1]] = new KeyValuePair<String, String>(wordSplit[2], wordSplit[3]);
@@ -373,8 +377,8 @@ namespace Language
 
         static void Main(string[] args)
         {
-            //EnglishJson.CreateJson();
-            JapaneseJson.CreateJson();
+            EnglishJson.CreateJson();
+            //JapaneseJson.CreateJson();
         }
     }
 }
