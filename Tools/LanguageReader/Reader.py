@@ -1,80 +1,85 @@
+"""Read vocabulary and output to json file."""
 import re
 import json
-import codecs
 
-def EReader():
-    szFilePath = "English.txt"
-    szVocPath  = "EngVoc.txt"
-    szOutPath  = "English.json"
-    MAX_LESSON_COUNT = 50
+VOC_PATH = "EngVoc.txt"
+LESSON_PATH = "English.txt"
+OUT_PATH = "English.json"
+MAX_LESSON_COUNT = 50
 
-    reEng = re.compile("^[a-zA-Z]")
-    reInx = re.compile("^[0-9]+(.) .*")
+def voc_reader():
+    """Read the vocabulary."""
 
-    wordDic = {}
+    voc_dict = {}
+    reg_alpha = re.compile("^[a-zA-Z]")
 
-    with codecs.open(szVocPath, 'r') as fl:
+    with open(VOC_PATH, 'r') as voc_file:
 
-        for line in fl :
-            if line == "" :
+        for voc_line in voc_file:
+            if voc_line == "":
                 continue
-            words = line.split(" ");
-            if len(words) < 4 :
+            voc_words = voc_line.split(" ")
+            if len(voc_words) < 4:
                 continue
-            if len(words) > 4 :
-                for i in range(4, len(words)) :
-                    words[3] += " " + words[i];
-            if not reEng.match(words[1]) :
+            if len(voc_words) > 4:
+                for i in range(4, len(voc_words)):
+                    voc_words[3] += " " + voc_words[i]
+            if not reg_alpha.match(voc_words[1]):
                 continue
-            for i in range(1, 4) :
-                words[i] = words[i].replace("\"", "")
-                words[i] = words[i].replace("\n", "")
-            
-            pairs = [words[2], words[3]]
-            wordDic[words[1]] = pairs
+            for i in range(1, 4):
+                voc_words[i] = voc_words[i].replace("\"", "")
+                voc_words[i] = voc_words[i].replace("\n", "")
+            voc_dict[voc_words[1]] = [voc_words[2], voc_words[3]]
 
-    with open(szFilePath, 'r') as fl:
+    return voc_dict
 
-        wordCount = 0
-        eJson = []
-        lesson = []
+def json_reader():
+    """Output the vocabulary to json file."""
 
-        for line in fl :
-            if not reInx.match(line) :
-                continue;
-            line.strip()
-            startIndex = endIndex = -1
-            for i in range(0, len(line)) :
-                if line[i] == '.' :
-                    startIndex = 0;
-                elif line[i].isalpha() and startIndex == 0 :
-                    startIndex = i
-                elif not line[i].isalpha() and startIndex > 0 :
-                    endIndex = i
+    group_list = []
+    lesson_list = []
+
+    reg_index = re.compile("^[0-9]+(.) .*")
+    voc_dict = voc_reader()
+
+    with open(LESSON_PATH, 'r') as lesson_file:
+
+        for lesson_line in lesson_file:
+            if not reg_index.match(lesson_line):
+                continue
+            lesson_line.strip()
+            start_index = end_index = -1
+            for i in range(0, len(lesson_line)):
+                if lesson_line[i] == '.':
+                    start_index = 0
+                elif lesson_line[i].isalpha() and start_index == 0:
+                    start_index = i
+                elif not lesson_line[i].isalpha() and start_index > 0:
+                    end_index = i
                     break
 
-            if startIndex == -1 or endIndex == -1 :
+            if start_index == -1 or end_index == -1:
                 continue
 
-            wordCount = wordCount + 1
-
-            szWord = line[startIndex: endIndex]
-            if not wordDic.has_key(szWord) :
+            lesson_word = lesson_line[start_index: end_index]
+            if not voc_dict.has_key(lesson_word):
                 continue
 
-            ext = wordDic[szWord][0]
-            meaning = wordDic[szWord][1]
+            ext = voc_dict[lesson_word][0]
+            meaning = voc_dict[lesson_word][1]
 
-            lesson.append({"Voc": szWord, "Ext": ext, "Type": "", "Meanning": meaning})
-            if len(lesson) >= MAX_LESSON_COUNT :
-                eJson.append(lesson)
-                lesson = []
+            lesson_list.append({"Voc": lesson_word, "Ext": ext, "Type": "", "Meanning": meaning})
+            if len(lesson_list) >= MAX_LESSON_COUNT:
+                group_list.append(lesson_list)
+                lesson_list = []
 
-        if len(lesson) > 0 :
-            eJson.append(lesson)
+        lesson_len = len(lesson_list)
+        if lesson_len > 0:
+            group_list.append(lesson_list)
 
-        fJson = open(szOutPath, 'w')
-        fJson.write(json.dumps(eJson, encoding='utf-8', ensure_ascii=False, indent = 4, sort_keys = True))
-        fJson.close()
+        json_file = open(OUT_PATH, 'w')
+        json_file.write(json.dumps(group_list, encoding='utf-8', ensure_ascii=False,
+                                   indent=4, sort_keys=True))
+        json_file.close()
 
-EReader()
+json_reader()
