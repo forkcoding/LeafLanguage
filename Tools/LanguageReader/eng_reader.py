@@ -1,15 +1,15 @@
-"""Read vocabulary and output to json file."""
+# -*- coding:utf-8 -*-
+"""Read English vocabulary and output to json file."""
 import re
 import json
 
 VOC_PATH = "EngVoc.txt"
 LESSON_PATH = "English.txt"
 OUT_PATH = "English.json"
-MAX_LESSON_COUNT = 50
+MAX_WORD_COUNT = 50
 
 def voc_reader():
     """Read the vocabulary."""
-
     voc_count = 0
     voc_dict = {}
     reg_voc = re.compile(r"^[0-9]+\. (.+) (\[.+\]) (.+)$")
@@ -38,50 +38,51 @@ def voc_reader():
 
     return voc_dict
 
-def json_reader():
+def voc2json():
     """Output the vocabulary to json file."""
-
     words_count = 0
-    group_list = []
+    word_list = []
     lesson_list = []
 
     reg_word = re.compile(r"[0-9]+\.\s*([a-zA-Z\S]+)")
     voc_dict = voc_reader()
 
-    with open(LESSON_PATH, 'r') as lesson_file:
+    with open(LESSON_PATH, 'r') as word_file:
 
-        for lesson_line in lesson_file:
-            lesson_line.strip()
-            lesson_line = lesson_line.replace("\xef", " ")
-            lesson_line = lesson_line.replace("|", " ")
-            word_match = reg_word.match(lesson_line)
+        for word_line in word_file:
+            word_line.strip()
+            word_line = word_line.replace("\xef", " ")
+            word_line = word_line.replace("|", " ")
+            word_match = reg_word.match(word_line)
             if not word_match:
                 continue
-            lesson_word = word_match.group(1)
-            if not voc_dict.has_key(lesson_word):
+            word_group = word_match.group(1)
+            if not voc_dict.has_key(word_group):
                 continue
 
             words_count = words_count + 1
 
-            lesson_list.append({"Type": "",
-                                "Voc": lesson_word,
-                                "Ext": voc_dict[lesson_word][0],
-                                "Meanning": voc_dict[lesson_word][1],
-                                "Time": 0})
+            word_list.append({
+                "Type": "",
+                "Voc": word_group,
+                "Ext": voc_dict[word_group][0],
+                "Meanning": voc_dict[word_group][1],
+                "Time": 0
+            })
 
-            if len(lesson_list) >= MAX_LESSON_COUNT:
-                group_list.append(lesson_list)
-                lesson_list = []
+            if len(word_list) >= MAX_WORD_COUNT:
+                lesson_list.append(word_list)
+                word_list = []
 
-        lesson_len = len(lesson_list)
+        lesson_len = len(word_list)
         if lesson_len > 0:
-            group_list.append(lesson_list)
+            lesson_list.append(word_list)
 
         print words_count
 
         json_file = open(OUT_PATH, 'w')
-        json_file.write(json.dumps(group_list, encoding='utf-8', ensure_ascii=False,
+        json_file.write(json.dumps(lesson_list, encoding='utf-8', ensure_ascii=False,
                                    indent=4, sort_keys=True))
         json_file.close()
 
-json_reader()
+voc2json()
