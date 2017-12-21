@@ -11,25 +11,19 @@ def voc_reader():
     """Read the vocabulary."""
 
     voc_dict = {}
-    reg_alpha = re.compile("^[a-zA-Z]")
+    reg_voc = re.compile("^[0-9]+\. ([a-zA-Z]+) (\[.+\]) (.+)$")
 
     with open(VOC_PATH, 'r') as voc_file:
 
         for voc_line in voc_file:
             if voc_line == "":
                 continue
-            voc_words = voc_line.split(" ")
-            if len(voc_words) < 4:
+            voc_line = voc_line.replace("\"", "")
+            voc_line = voc_line.replace("\n", "")
+            voc_match = reg_voc.match(voc_line)
+            if not voc_match:
                 continue
-            if len(voc_words) > 4:
-                for i in range(4, len(voc_words)):
-                    voc_words[3] += " " + voc_words[i]
-            if not reg_alpha.match(voc_words[1]):
-                continue
-            for i in range(1, 4):
-                voc_words[i] = voc_words[i].replace("\"", "")
-                voc_words[i] = voc_words[i].replace("\n", "")
-            voc_dict[voc_words[1]] = [voc_words[2], voc_words[3]]
+            voc_dict[voc_match.group(1)] = [voc_match.group(2), voc_match.group(3)]
 
     return voc_dict
 
@@ -39,7 +33,8 @@ def json_reader():
     group_list = []
     lesson_list = []
 
-    reg_index = re.compile("^[0-9]+(.) .*")
+    reg_index = re.compile("[0-9]+\.")
+    reg_word = re.compile("[0-9]+\.\s*([a-zA-Z]+)")
     voc_dict = voc_reader()
 
     with open(LESSON_PATH, 'r') as lesson_file:
@@ -48,27 +43,17 @@ def json_reader():
             if not reg_index.match(lesson_line):
                 continue
             lesson_line.strip()
-            start_index = end_index = -1
-            for i in range(0, len(lesson_line)):
-                if lesson_line[i] == '.':
-                    start_index = 0
-                elif lesson_line[i].isalpha() and start_index == 0:
-                    start_index = i
-                elif not lesson_line[i].isalpha() and start_index > 0:
-                    end_index = i
-                    break
-
-            if start_index == -1 or end_index == -1:
+            word_match = reg_word.match(lesson_line)
+            if not word_match:
                 continue
-
-            lesson_word = lesson_line[start_index: end_index]
+            lesson_word = word_match.group(1)
             if not voc_dict.has_key(lesson_word):
                 continue
 
             ext = voc_dict[lesson_word][0]
             meaning = voc_dict[lesson_word][1]
 
-            lesson_list.append({"Voc": lesson_word, "Ext": ext, "Type": "", "Meanning": meaning})
+            lesson_list.append({"Voc": lesson_word, "Ext": ext, "Type": "", "Meanning": meaning, "Time": 0})
             if len(lesson_list) >= MAX_LESSON_COUNT:
                 group_list.append(lesson_list)
                 lesson_list = []
