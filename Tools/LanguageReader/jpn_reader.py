@@ -122,8 +122,7 @@ def mina1_reader():
                     "Ext": voc_split[0],
                     "Voc": voc_split[1],
                     "Type": "",
-                    "Meaning": voc_split[2],
-                    "Time": ""
+                    "Meaning": voc_split[2]
                 }
 
                 if not voc_dict.has_key("Voc"):
@@ -169,8 +168,7 @@ def mina2_reader():
                     "Voc": voc_split[0],
                     "Ext": voc_split[1],
                     "Type": "",
-                    "Meaning": voc_split[2],
-                    "Time": ""
+                    "Meaning": voc_split[2]
                 }
 
                 if not voc_dict.has_key("Voc"):
