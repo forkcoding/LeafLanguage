@@ -3,7 +3,9 @@
 import re
 import json
 
-FILE_PATH = "Japanese.txt"
+HYOU_FILE_PATH = "Hyou.txt"
+MINA1_FILE_PATH = "Mina1.txt"
+MINA2_FILE_PATH = "Mina2.txt"
 OUT_PATH = "Japanese.json"
 SOUND_DIR = "Sound/"
 
@@ -24,9 +26,9 @@ def sound_reader(lesson_num):
 
         return sound_list
 
-def voc_reader():
-    """Read the vocabulary."""
-    with open(FILE_PATH, 'r') as voc_file:
+def hyou_reader():
+    """Read the HoyuJyun vocabulary."""
+    with open(HYOU_FILE_PATH, 'r') as voc_file:
 
         voc_list = []
         lesson_list = []
@@ -87,9 +89,110 @@ def voc_reader():
 
         return lesson_list
 
+def mina1_reader():
+    """Read the Mina vocabulary."""
+    with open(MINA1_FILE_PATH, 'r') as voc_file:
+
+        voc_list = []
+        lesson_list = []
+
+        voc_count = 0
+        lesson_count = 0
+
+        for voc_line in voc_file:
+            if voc_line.find("大家日语") != -1:
+                voc_len = len(voc_list)
+                if voc_len > 0:
+                    lesson_list.append(voc_list)
+
+                voc_list = []
+                voc_count = 0
+                lesson_count = lesson_count + 1
+            elif voc_line != "\n":
+                voc_line.strip()
+
+                voc_split = voc_line.split("\t")
+                while '' in voc_split:
+                    voc_split.remove('')
+
+                if len(voc_split) < 3:
+                    continue
+
+                voc_dict = {
+                    "Ext": voc_split[0],
+                    "Voc": voc_split[1],
+                    "Type": "",
+                    "Meaning": voc_split[2],
+                    "Time": ""
+                }
+
+                if not voc_dict.has_key("Voc"):
+                    print voc_line
+                    continue
+
+                voc_count = voc_count + 1
+                voc_list.append(voc_dict)
+
+        voc_len = len(voc_list)
+        if voc_len > 0:
+            lesson_list.append(voc_list)
+
+        return lesson_list
+def mina2_reader():
+    """Read the Mina vocabulary."""
+    with open(MINA2_FILE_PATH, 'r') as voc_file:
+
+        voc_list = []
+        lesson_list = []
+
+        voc_count = 0
+        lesson_count = 0
+
+        for voc_line in voc_file:
+            if voc_line.find("第") != -1 and voc_line.find("课") != -1:
+                voc_len = len(voc_list)
+                if voc_len > 0:
+                    lesson_list.append(voc_list)
+
+                voc_list = []
+                voc_count = 0
+                lesson_count = lesson_count + 1
+            elif voc_line != "\n" and voc_line.find("会　話") == -1 and voc_line.find("読み物") == -1:
+                voc_line.strip()
+
+                voc_split = voc_line.split("\t")
+
+                if len(voc_split) < 2:
+                    continue
+
+                voc_dict = {
+                    "Voc": voc_split[0],
+                    "Ext": voc_split[1],
+                    "Type": "",
+                    "Meaning": voc_split[2],
+                    "Time": ""
+                }
+
+                if not voc_dict.has_key("Voc"):
+                    print voc_line
+                    continue
+
+                voc_count = voc_count + 1
+                voc_list.append(voc_dict)
+
+        voc_len = len(voc_list)
+        if voc_len > 0:
+            lesson_list.append(voc_list)
+
+        return lesson_list
+
 def voc2json():
     """Output the vocabulary to json file."""
-    lesson_list = voc_reader()
+    hyou_lesson = hyou_reader()
+    mina1_lesson = mina1_reader()
+    mina2_lesson = mina2_reader()
+
+    lesson_list = hyou_lesson + mina1_lesson + mina2_lesson
 
     json_file = open(OUT_PATH, 'w')
     json_file.write(json.dumps(lesson_list, encoding='utf-8', ensure_ascii=False,
