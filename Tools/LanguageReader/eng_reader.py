@@ -66,7 +66,7 @@ def voc2json():
                 "Type": "",
                 "Voc": word_group,
                 "Ext": voc_dict[word_group][0],
-                "Meanning": voc_dict[word_group][1],
+                "Meaning": voc_dict[word_group][1],
                 "Time": 0
             })
 
