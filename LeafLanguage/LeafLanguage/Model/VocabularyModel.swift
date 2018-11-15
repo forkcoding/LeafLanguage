@@ -60,7 +60,7 @@ class VocabularyModel {
                     }
                     
                     vocArr.append(Vocabulary(
-                        Word:       vocStr,        CNWord:     extStr,
+                        Word:       vocStr,         CNWord:     extStr,
                         WordType:   typeStr,        Meaning:    meaningStr,
                         SoundName:  soundFileName,  SoundStart: startTime,
                         SoundEnd:   0.0,            UniqueID:   uniqueID))

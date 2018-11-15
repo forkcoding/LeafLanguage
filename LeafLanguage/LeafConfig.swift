@@ -25,7 +25,7 @@ enum LANGUAGE: Int {
 }
 
 class LeafConfig {
-    
+    static let APP_GROUP_ID = "group.leafvmaple.study"
     static let INTERNET_PATH = "http://leafvmaple.github.io/script"
     
     static let NUMBER_STRING = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "百"]

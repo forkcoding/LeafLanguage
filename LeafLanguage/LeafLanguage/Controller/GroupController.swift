@@ -19,8 +19,9 @@ class GroupController: UIViewController, UITableViewDelegate, UITableViewDataSou
     fileprivate var _StartLesson = -1
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        //Thread.sleep(forTimeInterval: 3.0) // 延长3秒
         
         let backItem = UIBarButtonItem(title: TITLE_STRING, style: .done, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backItem

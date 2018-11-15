@@ -11,8 +11,12 @@ import Foundation
 class DataIO {
     
     static func Write(_ fileName: String, directory: String, data: Data) {
-        
         let fileManager = FileManager.default
+        var sharedURL: URL? = fileManager.containerURL(forSecurityApplicationGroupIdentifier: LeafConfig.APP_GROUP_ID)
+        if let sharedURL = sharedURL {
+            let SQLiteDB = sharedURL.appendingPathComponent(fileName)
+            
+        }
         
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths[0] as NSString
@@ -41,18 +45,31 @@ class DataIO {
     }
     
     static func Write(_ fileName: String, data: Data) {
+        let fileManager = FileManager.default
+        var sharedURL: URL? = fileManager.containerURL(forSecurityApplicationGroupIdentifier: LeafConfig.APP_GROUP_ID)
+        if let sharedURL = sharedURL {
+            let filePath = sharedURL.appendingPathComponent(fileName)
+            try? data.write(to: filePath, options: [.atomic])
+        }
         
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        /*let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths[0] as NSString
         let filePath = path.appendingPathComponent(fileName)
         
-        try? data.write(to: URL(fileURLWithPath: filePath), options: [.atomic])
+        try? data.write(to: URL(fileURLWithPath: filePath), options: [.atomic])*/
     }
     
     static func Read(_ fileName: String) -> Data? {
-        
         let fileManager = FileManager.default
+        var sharedURL: URL? = fileManager.containerURL(forSecurityApplicationGroupIdentifier: LeafConfig.APP_GROUP_ID)
+        if let sharedURL = sharedURL {
+            let filePath = sharedURL.appendingPathComponent(fileName)
+            if (fileManager.fileExists(atPath: filePath.path)) {
+                return try? Data(contentsOf: filePath)
+            }
+        }
         
+        /*
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths[0] as NSString
         let filePath = path.appendingPathComponent(fileName)
@@ -60,6 +77,7 @@ class DataIO {
         if (fileManager.fileExists(atPath: filePath)) {
             return fileManager.contents(atPath: filePath)
         }
+        */
         
         return nil
     }

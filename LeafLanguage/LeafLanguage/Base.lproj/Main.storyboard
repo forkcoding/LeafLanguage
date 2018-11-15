@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +41,7 @@
                     <navigationItem key="navigationItem" id="ip3-lS-Dz9">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="72f-2b-TQn">
-                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                            <rect key="frame" x="123.5" y="7" width="128" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zQR-zU-EC8">
@@ -68,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="-319"/>
+            <point key="canvasLocation" x="1358.4000000000001" y="-286.95652173913044"/>
         </scene>
         <!--ReviewNavigation-->
         <scene sceneID="mn1-f5-wz6">
@@ -76,7 +74,7 @@
                 <navigationController id="LIW-gc-9wE" userLabel="ReviewNavigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="回忆模式" image="HeartIcon" id="Qtb-l3-C0T"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="epx-5m-4q9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -85,7 +83,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xap-o2-HGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="375"/>
+            <point key="canvasLocation" x="640" y="337.33133433283359"/>
         </scene>
         <!--SettingsView-->
         <scene sceneID="wg7-f3-ORb">
@@ -209,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="1089"/>
+            <point key="canvasLocation" x="640" y="979.61019490254876"/>
         </scene>
         <!--ReviewView-->
         <scene sceneID="MAS-1V-mNB">
@@ -262,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htx-lS-8sx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="375"/>
+            <point key="canvasLocation" x="1358.4000000000001" y="337.33133433283359"/>
         </scene>
         <!--GroupView-->
         <scene sceneID="NWK-M0-tIW">
@@ -300,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZP7-N8-Tkp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298" y="-319"/>
+            <point key="canvasLocation" x="2076.8000000000002" y="-286.95652173913044"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -319,7 +317,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="25"/>
+            <point key="canvasLocation" x="-1.6000000000000001" y="22.488755622188908"/>
         </scene>
         <!--VocabularyView-->
         <scene sceneID="dYH-uV-Lsi">
@@ -341,7 +339,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蕴意" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlv-IE-R09" userLabel="MeansLabel">
-                                <rect key="frame" x="169" y="195.5" width="37" height="22"/>
+                                <rect key="frame" x="169" y="195" width="37" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -350,7 +348,7 @@
                                 <rect key="frame" x="16" y="258.5" width="343" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="副单词" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doD-eQ-pa9">
-                                        <rect key="frame" x="146" y="37" width="52" height="21"/>
+                                        <rect key="frame" x="145.5" y="37" width="52" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -427,7 +425,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgk-fM-Dlm" userLabel="AddGlossaryButton">
-                                <rect key="frame" x="192.5" y="562" width="166.5" height="35"/>
+                                <rect key="frame" x="192.5" y="563" width="166.5" height="35"/>
                                 <color key="backgroundColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Ln0-B4-6JP"/>
@@ -455,13 +453,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKz-r0-k71" userLabel="HardNumber">
-                                <rect key="frame" x="294" y="536" width="11" height="21"/>
+                                <rect key="frame" x="294" y="537" width="11" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系数:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0A-86-zAb" userLabel="HardLabel">
-                                <rect key="frame" x="246.5" y="536" width="39.5" height="21"/>
+                                <rect key="frame" x="246.5" y="537" width="39.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -498,7 +496,7 @@
                             <constraint firstItem="vHA-h2-Ny8" firstAttribute="leading" secondItem="1lK-QT-7GB" secondAttribute="leadingMargin" id="uoI-93-nzu"/>
                             <constraint firstItem="s0A-86-zAb" firstAttribute="bottom" secondItem="sgk-fM-Dlm" secondAttribute="top" constant="-5" id="v2z-Xu-c08"/>
                             <constraint firstItem="jlv-IE-R09" firstAttribute="centerY" secondItem="26O-Jq-uoe" secondAttribute="centerY" id="vYH-dC-ww3"/>
-                            <constraint firstItem="sgk-fM-Dlm" firstAttribute="bottom" secondItem="1lK-QT-7GB" secondAttribute="bottom" constant="-70" id="zcm-KE-IzW"/>
+                            <constraint firstItem="sgk-fM-Dlm" firstAttribute="centerY" secondItem="Ysr-3B-c6u" secondAttribute="centerY" id="zcm-KE-IzW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="X78-0f-nUG"/>
@@ -516,7 +514,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZn-GC-wnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756" y="-319"/>
+            <point key="canvasLocation" x="2809.5999999999999" y="-286.95652173913044"/>
         </scene>
         <!--VocNavigation-->
         <scene sceneID="viE-FG-YTD">
@@ -525,7 +523,7 @@
                     <tabBarItem key="tabBarItem" title="单词记忆" image="TwitterIcon" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kxa-Ut-W40">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -535,7 +533,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1G-3o-0XA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="-319"/>
+            <point key="canvasLocation" x="640" y="-286.95652173913044"/>
         </scene>
         <!--GlossaryView-->
         <scene sceneID="0Zx-du-MQc">
@@ -553,7 +551,7 @@
                                 <rect key="frame" x="16" y="163.5" width="343" height="85"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蕴意" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mf4-Qw-8G0" userLabel="MeansLabel">
-                                        <rect key="frame" x="153" y="32" width="37" height="22"/>
+                                        <rect key="frame" x="153" y="31.5" width="37" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -647,7 +645,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62W-Qt-aaj" userLabel="AddGlossaryButton">
-                                <rect key="frame" x="192.5" y="562" width="166.5" height="35"/>
+                                <rect key="frame" x="192.5" y="563" width="166.5" height="35"/>
                                 <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="FED-N6-JPd"/>
@@ -675,19 +673,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系数:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ce-Ej-Nv6" userLabel="HardLabel">
-                                <rect key="frame" x="236.5" y="536" width="39.5" height="21"/>
+                                <rect key="frame" x="236.5" y="537" width="39.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhJ-B4-Oae" userLabel="HardNumber">
-                                <rect key="frame" x="284" y="536" width="11" height="21"/>
+                                <rect key="frame" x="284" y="537" width="11" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7t-qP-lBi" userLabel="ActionMenuButton">
-                                <rect key="frame" x="336" y="532" width="23" height="20"/>
+                                <rect key="frame" x="336" y="533" width="23" height="20"/>
                                 <state key="normal" backgroundImage="ActionMenuIco"/>
                                 <connections>
                                     <action selector="ShowMenuClick:" destination="Itx-C8-j0w" eventType="touchUpInside" id="jX7-Cp-cJ2"/>
@@ -697,7 +695,7 @@
                         <color key="backgroundColor" red="0.1764705882" green="0.1843137255" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Klv-Pe-KYm" firstAttribute="bottom" secondItem="wyN-up-QbO" secondAttribute="top" constant="-10" id="2XC-yg-nfn"/>
-                            <constraint firstItem="62W-Qt-aaj" firstAttribute="bottom" secondItem="om2-U4-VP8" secondAttribute="bottom" constant="-70" id="3SQ-ep-Egq"/>
+                            <constraint firstItem="62W-Qt-aaj" firstAttribute="centerY" secondItem="ggN-0Y-z7O" secondAttribute="centerY" id="3SQ-ep-Egq"/>
                             <constraint firstItem="f1v-V8-3eT" firstAttribute="trailing" secondItem="om2-U4-VP8" secondAttribute="trailingMargin" id="7nP-L9-VYn"/>
                             <constraint firstItem="wyN-up-QbO" firstAttribute="trailing" secondItem="om2-U4-VP8" secondAttribute="trailingMargin" id="D5q-ah-HYs"/>
                             <constraint firstItem="62W-Qt-aaj" firstAttribute="leading" secondItem="ggN-0Y-z7O" secondAttribute="trailing" constant="4" id="DTM-AP-UlE"/>
@@ -742,7 +740,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aE4-UU-t2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298" y="375"/>
+            <point key="canvasLocation" x="2076.8000000000002" y="337.33133433283359"/>
         </scene>
     </scenes>
     <resources>
@@ -756,9 +754,4 @@
         <image name="PinterestIcon" width="19" height="24"/>
         <image name="TwitterIcon" width="29" height="24"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>
