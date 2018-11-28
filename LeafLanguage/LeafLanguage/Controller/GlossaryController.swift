@@ -9,16 +9,13 @@
 import Foundation
 
 class GlossaryController : UIViewController, UIActionSheetDelegate {
+    fileprivate let ENDING_STRING = "单词结束"
     
-    fileprivate var _SelectedLanguage = LANGUAGE.japanese
-    
-    fileprivate var _GlossaryIndexArray = [Int]()
-    
-    fileprivate let END_STRING = "单词结束"
-    
-    fileprivate var _IndexArray = [Int]()
-    fileprivate var _Vocabulary: Vocabulary?
-    fileprivate var _RandomIndex = 0
+    fileprivate var selectedLang = LANGUAGE.japanese
+    fileprivate var arrGlosIndex = [Int]()
+    fileprivate var arrIndex = [Int]()
+    fileprivate var vocabulary: Vocabulary?
+    fileprivate var randIndex = 0
     
     @IBOutlet weak var VocabularyLabel: UILabel!
     @IBOutlet weak var CountLabel: UILabel!
@@ -31,17 +28,15 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var MeaningButton: UIButton!
     @IBOutlet weak var HardNumLabel: UILabel!
     
-    fileprivate var _SoundManager: SoundManager?
+    fileprivate var soundManager: SoundManager?
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         InitView()
         InitVocabulary()
         UpdateVocabulary()
         AddSwipeGesture()
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -49,45 +44,38 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     override func didReceiveMemoryWarning() {
-        
         super.didReceiveMemoryWarning()
-        
     }
     
     @IBAction func UpdatePrev() {
-        
-        if (_RandomIndex > 0) {
-            _RandomIndex = _RandomIndex - 1
+        if (randIndex > 0) {
+            randIndex = randIndex - 1
             UpdateVocabulary()
         }
     }
     
     @IBAction func UpdateNext() {
-        
-        if (_RandomIndex < _IndexArray.count - 1) {
-            _RandomIndex = _RandomIndex + 1
+        if (randIndex < arrIndex.count - 1) {
+            randIndex = randIndex + 1
             UpdateVocabulary()
         }
     }
     
     @IBAction func AddBtnClick() {
-        if (_Vocabulary != nil) {
-            let id = String.init(_Vocabulary!.UniqueID)
+        if (vocabulary != nil) {
+            let id = String.init(vocabulary!.UniqueID)
             GlossaryModel.Add(key: id, num: 1)
             UpdateVocabulary()
         }
     }
     
     @IBAction func SoundClick() {
-        
-        if (_SoundManager == nil) {
-            _SoundManager = SoundManager()
+        if (soundManager == nil) {
+            soundManager = SoundManager()
         }
         
-        if (_Vocabulary != nil) {
-            _SoundManager!.Play(_Vocabulary!.SoundName,
-                                startTime: _Vocabulary!.SoundStart,
-                                endTime: _Vocabulary!.SoundEnd)
+        if (vocabulary != nil) {
+            soundManager!.Play(vocabulary!.SoundName, startTime: vocabulary!.SoundStart, endTime: vocabulary!.SoundEnd)
         }
     }
     
@@ -103,7 +91,6 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func ShowVocClick() {
-        
         if (VocabularyLabel!.isHidden) {
             VocabularyLabel!.isHidden = false
             VocabularyButton.setBackgroundImage(UIImage(named: "JPNOn"), for: UIControlState())
@@ -115,7 +102,6 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func ShowMeaningClick() {
-        
         if (MeaningLabel.isHidden) {
             MeaningLabel.isHidden = false
             MeaningButton.setBackgroundImage(UIImage(named: "CNOn"), for: UIControlState())
@@ -134,11 +120,11 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     
     func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 0) {
-            let id = String.init(_Vocabulary!.UniqueID)
+            let id = String.init(vocabulary!.UniqueID)
             GlossaryModel.Remove(key: id)
-            _IndexArray.remove(at: _RandomIndex)
-            if (_RandomIndex >= _IndexArray.count){
-                _RandomIndex = _RandomIndex - 1
+            arrIndex.remove(at: randIndex)
+            if (randIndex >= arrIndex.count){
+                randIndex = randIndex - 1
             }
             UpdateVocabulary()
         }
@@ -160,48 +146,48 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
             randomArr.append(i)
         }
         
-        _GlossaryIndexArray.removeAll()
+        arrGlosIndex.removeAll()
         for key in GlossaryModel.Enumerator() {
-            _GlossaryIndexArray.append(Int(key as! String)!)
+            arrGlosIndex.append(Int(key as! String)!)
         }
         
-        _IndexArray.removeAll()
+        arrIndex.removeAll()
         
         if (LeafConfig.RandomVoc) {
             while (randomArr.count > 0) {
                 
                 let randomInt = Int(arc4random_uniform(UInt32(randomArr.count)))
                 
-                _IndexArray.append(randomArr[randomInt])
+                arrIndex.append(randomArr[randomInt])
                 randomArr.remove(at: randomInt)
             }
         }
         else {
-            _IndexArray = randomArr
+            arrIndex = randomArr
         }
 
     }
     
     func UpdateVocabulary() {
         
-        if (_RandomIndex < _IndexArray.count) {
+        if (randIndex < arrIndex.count) {
             
-            _Vocabulary = VocabularyModel.GetVocabulary(_SelectedLanguage, uniqueID: _GlossaryIndexArray[_IndexArray[_RandomIndex]])
+            vocabulary = VocabularyModel.GetVocabulary(selectedLang, uniqueID: arrGlosIndex[arrIndex[randIndex]])
             
-            VocabularyLabel.text = _Vocabulary!.Word
-            ExtVocLabel.text = _Vocabulary!.CNWord
-            MeaningLabel.text = _Vocabulary!.Meaning
+            VocabularyLabel.text = vocabulary!.Word
+            ExtVocLabel.text = vocabulary!.CNWord
+            MeaningLabel.text = vocabulary!.Meaning
             
-            let indexString = NSString(format: "%03d", _RandomIndex + 1)
-            let countString = NSString(format: "%03d", _IndexArray.count)
+            let indexString = NSString(format: "%03d", randIndex + 1)
+            let countString = NSString(format: "%03d", arrIndex.count)
             
             CountLabel.text = "\(indexString)/\(countString)"
             
-            let id = String.init(_Vocabulary!.UniqueID)
+            let id = String.init(vocabulary!.UniqueID)
             HardNumLabel.text = "\(GlossaryModel.Get(key: id))"
         }
         
-        if (_RandomIndex == _IndexArray.count - 1) {
+        if (randIndex == arrIndex.count - 1) {
             NextButton.isEnabled = false
         }
         else {
@@ -214,7 +200,6 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     func AddSwipeGesture() {
-        
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(VocabularyController.HandleSwipeGesture))
         leftSwipe.numberOfTouchesRequired = 1
         leftSwipe.direction = UISwipeGestureRecognizerDirection.left
@@ -237,7 +222,6 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
     }
     
     func HandleSwipeGesture(_ sender: UISwipeGestureRecognizer) {
-        
         switch (sender.direction){
         case UISwipeGestureRecognizerDirection.left:
             UpdateNext()
@@ -255,6 +239,4 @@ class GlossaryController : UIViewController, UIActionSheetDelegate {
             break;
         }
     }
-
-    
 }
