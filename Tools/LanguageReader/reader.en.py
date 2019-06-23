@@ -2,41 +2,76 @@
 """Read English vocabulary and output to json file."""
 import re
 import json
+import codecs
 
-VOC_PATH = "EngVoc.txt"
+VOC_PATH = '../Source/en/vocabulary.txt'
 LESSON_PATH = "English.txt"
 OUT_PATH = "English.json"
 MAX_WORD_COUNT = 50
 
+
+def json_save(path, data):
+    file = codecs.open(path, 'w', 'utf-8')
+    file.write(json.dumps(data, ensure_ascii=False, indent=4, sort_keys=True))
+    file.close()
+
+
 def voc_reader():
     """Read the vocabulary."""
+    prefix = '\0'
     voc_count = 0
     voc_dict = {}
-    reg_voc = re.compile(r"^[0-9]+\. (.+) (\[.+\]) (.+)$")
-    reg_voc_lite = re.compile(r"^[0-9]+\. ([a-zA-Z\-]+) (.+)$")
+    voc_list = []
+    lesson_list = []
+    reg_voc = re.compile(r'^(\d+)\. ([a-zA-Z\-\' ]+) (\[.+\]) (.+)$')
+    reg_voc_lite = re.compile(r'^(\d+)\. ([a-zA-Z\-\' ]+) (.+)$')
 
-    with open(VOC_PATH, 'r') as voc_file:
+    with codecs.open(VOC_PATH, 'r', encoding='utf-8') as f:
 
-        for voc_line in voc_file:
-            if voc_line == "":
+        for line in f:
+            if line == "":
                 continue
-            voc_line = voc_line.replace("\"", "")
-            voc_line = voc_line.replace("\n", "")
-            voc_line = voc_line.replace("  ", " ")
-            voc_match = reg_voc.match(voc_line) or reg_voc_lite.match(voc_line)
+            line = line.replace("\"", "")
+            line = line.replace("\n", "")
+            line = line.replace("  ", " ")
+            voc_match = reg_voc.match(line) or reg_voc_lite.match(line)
             if not voc_match:
                 continue
 
-            if voc_match.lastindex == 2:
-                voc_dict[voc_match.group(1)] = ["", voc_match.group(2)]
-            elif voc_match.lastindex == 3:
-                voc_dict[voc_match.group(1)] = [voc_match.group(2), voc_match.group(3)]
+            symbol, meaning = "", ""
+            orders = int(voc_match.group(1))
+            key = voc_match.group(2)
+            if voc_match.lastindex == 3:
+                meaning = voc_match.group(3)
+            elif voc_match.lastindex == 4:
+                symbol = voc_match.group(3)
+                meaning = voc_match.group(4)
 
-            voc_count = voc_count + 1
+            voc_dict[key] = [symbol, meaning]
 
-        print voc_count
+            voc_count += 1
+            if orders != voc_count:
+                print(orders)
+
+            if prefix != '\0' and prefix != key[0].lower():
+                lesson_list.append(voc_list)
+                voc_list = []
+
+            prefix = key[0].lower()
+
+            voc_list.append({
+                "Type": "",
+                "Voc": key,
+                "Ext": symbol,
+                "Meaning": meaning,
+                "Time": 0
+            })
+        print(voc_count)
+
+    json_save(OUT_PATH, lesson_list)
 
     return voc_dict
+
 
 def voc2json():
     """Output the vocabulary to json file."""
@@ -49,18 +84,18 @@ def voc2json():
 
     with open(LESSON_PATH, 'r') as word_file:
 
-        for word_line in word_file:
-            word_line.strip()
-            word_line = word_line.replace("\xef", " ")
-            word_line = word_line.replace("|", " ")
-            word_match = reg_word.match(word_line)
+        for line in word_file:
+            line.strip()
+            line = line.replace("\xef", " ")
+            line = line.replace("|", " ")
+            word_match = reg_word.match(line)
             if not word_match:
                 continue
             word_group = word_match.group(1)
-            if not voc_dict.has_key(word_group):
+            if word_group not in voc_dict:
                 continue
 
-            words_count = words_count + 1
+            words_count += words_count + 1
 
             word_list.append({
                 "Type": "",
@@ -78,11 +113,10 @@ def voc2json():
         if lesson_len > 0:
             lesson_list.append(word_list)
 
-        print words_count
+        print(words_count)
 
-        json_file = open(OUT_PATH, 'w')
-        json_file.write(json.dumps(lesson_list, encoding='utf-8', ensure_ascii=False,
-                                   indent=4, sort_keys=True))
-        json_file.close()
+        json_save(OUT_PATH, lesson_list)
 
-voc2json()
+
+if __name__ == "__main__":
+    voc_reader()
